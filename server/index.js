@@ -2,7 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const user = require("./routes/user");
 const InitiateMongoServer = require("./config/db");
-const cors = require('cors')
 const morgan = require('morgan');
 
 // Initiate Mongo Server
@@ -15,7 +14,6 @@ app.use(morgan('dev'));
 const PORT = process.env.PORT || 4000;
 
 // Middleware
-app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
