@@ -41,11 +41,17 @@ function RegistrationForm(props) {
             redirectToHome();
             props.showError(null);
           } else {
-            props.showError("Some error ocurred");
+            props.showError("Some error occurred");
           }
         })
         .catch(function (error) {
-          props.showError(error.response.data.errors[0].msg);
+          if (error.response.data.msg) {
+            props.showError(error.response.data.msg);
+          } else if (error.response.data.errors[0].msg) {
+            props.showError(error.response.data.errors[0].msg);
+          } else {
+            props.showError("Some error occurred")
+          }
         });
     }
   };
