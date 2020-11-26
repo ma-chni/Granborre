@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 4000;
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static('public/build'));
+app.use(express.static('client/build'));
 
 app.get("/", (req, res) => {
   res.json({ message: "API Working" });
