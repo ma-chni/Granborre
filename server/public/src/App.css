@@ -1,0 +1,68 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+.App {
+  text-align: center;
+  max-width: 375px;
+  max-height: 812px;
+  border: 1px solid black;
+  margin: 10px auto;
+}
+
+.App-logo {
+  pointer-events: none;
+  max-width: 60%;
+  margin-right: 40%;
+}
+
+.container {
+  height: 812px;
+  width: 375px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+  .input-box {
+  width: 80%;
+  height: 40px;
+  margin: 5px auto;
+  color: rgba(159, 164, 188, 1);
+  top: 15px;
+  font-family: Inter;
+  font-size: 15px;
+  opacity: 1;
+  text-align: left;
+  padding-left: 15px;
+  border: none;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  border: none;
+}
+
+.submit-btn {
+  width: 80%;
+  height: 40px;
+  background: rgba(46, 100, 248, 1);
+  opacity: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  border: none;
+  color: white;
+  font-size: 15px;
+}

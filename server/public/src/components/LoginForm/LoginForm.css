@@ -1,0 +1,27 @@
+.login-card {
+    min-height: 60vh;
+}
+
+.registerMessage {
+    margin-top: 10vh;
+}
+
+.container {
+    background: url("..\\..\\images\\background-img.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    
+}
+
+.green-box {
+    position: absolute;
+    height: 60vh;
+    bottom: 0px;
+    width: inherit;
+    background: linear-gradient(rgba(91, 231, 98, 0), rgba(26, 164, 33, 1));
+}
+
+.outer-div {
+    z-index: 1;
+}
