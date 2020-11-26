@@ -6,3 +6,6 @@ Rymdstyrelsen, Skogsstyrelsen och Sveriges lantbruksuniversitet (SLU) utmanar Tr
 link to powerpoint presentation: https://docs.google.com/presentation/d/1maz4wcaeYxn4IKmBSLO1S6xL6-SCh2aKX-DV3o4y43c/edit?usp=sharing
 
 Link to a4 presentaiton: https://docs.google.com/document/d/1fwFl3vwZ-QEzHogWEssvOyI9SZ2hydYtRyaO-ddzxdE/edit#
+
+https://github.com/HackersOfSweden/Granborre/blob/main/helsingorgs_dreamteam.jfif
+
