@@ -18,7 +18,7 @@ router.post(
     "/signup",
     [
         check("email", "Please enter a valid email").isEmail(),
-        check("password", "Please enter a valid password").isLength({
+        check("password", "Please enter a valid password - password must be at least 6 characters long").isLength({
             min: 6
         })
     ],

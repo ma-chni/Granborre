@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
 const user = require("./routes/user");
 const InitiateMongoServer = require("./config/db");
 const morgan = require('morgan');
+const cors = require('cors');
+
 
 // Initiate Mongo Server
 InitiateMongoServer();
@@ -14,8 +16,9 @@ app.use(morgan('dev'));
 const PORT = process.env.PORT || 4000;
 
 // Middleware
+app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static('public'));
+app.use(express.static('public/build'));
 
 app.get("/", (req, res) => {
   res.json({ message: "API Working" });

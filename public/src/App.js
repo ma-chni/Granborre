@@ -1,8 +1,8 @@
-import React, { Component, useState } from 'react';
-import styled from 'styled-components';
-import logo from './images/logo.svg';
+import React, { useState } from 'react';
+//import styled from 'styled-components';
+//import logo from './images/logo.svg';
 import './App.css';
-import Header from './components/Header/Header';
+//import Header from './components/Header/Header';
 import LoginForm from './components/LoginForm/LoginForm';
 import RegistrationForm from './components/RegistrationForm/RegistrationForm';
 import Home from './components/Home/Home';
@@ -15,7 +15,7 @@ import {
 import AlertComponent from './components/AlertComponent/AlertComponent';
 
 function App() {
-  const [title, updateTitle] = useState(null);
+  const [/* title, */ updateTitle] = useState(null);
   const [errorMessage, updateErrorMessage] = useState(null);
   return (
     <Router>
