@@ -86,6 +86,14 @@ function RegistrationForm(props) {
             onChange={handleChange}
           />
           <input
+            type="phone"
+            className="input-field"
+            id="phone"
+            placeholder="telefonnummer"
+            value={state.phone}
+            onChange={handleChange}
+          />
+          <input
             type="password"
             className="input-field"
             id="password"
