@@ -55,12 +55,16 @@ function RegistrationForm(props) {
     }
   };
   const redirectToHome = () => {
-    this.props.updateTitle("Home");
-    this.props.history.push("/home");
+    props.updateTitle("Home");
+    props.history.push("/home");
   };
   const redirectToLogin = () => {
-    this.props.updateTitle("Login");
-    this.props.history.push("/login");
+    console.log("inside redirect");
+    console.log(props.updateTitle);
+    console.log(props.updateTitle());
+    console.log("finished logging");
+    props.updateTitle("Login");
+    props.history.push("/login");
   };
   const handleSubmitClick = (e) => {
     e.preventDefault();
