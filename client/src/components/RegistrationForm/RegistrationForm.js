@@ -30,7 +30,6 @@ function RegistrationForm(props) {
       axios
         .post(API_BASE_URL + "/user/signup", payload)
         .then(function (response) {
-          console.log(response);
           if (response.status === 200) {
             setState((prevState) => ({
               ...prevState,
@@ -56,12 +55,12 @@ function RegistrationForm(props) {
     }
   };
   const redirectToHome = () => {
-    props.updateTitle("Home");
-    props.history.push("/home");
+    this.props.updateTitle("Home");
+    this.props.history.push("/home");
   };
   const redirectToLogin = () => {
-    props.updateTitle("Login");
-    props.history.push("/login");
+    this.props.updateTitle("Login");
+    this.props.history.push("/login");
   };
   const handleSubmitClick = (e) => {
     e.preventDefault();
