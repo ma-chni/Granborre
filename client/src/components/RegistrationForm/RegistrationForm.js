@@ -59,10 +59,6 @@ function RegistrationForm(props) {
     props.history.push("/home");
   };
   const redirectToLogin = () => {
-    console.log("inside redirect");
-    console.log(props.updateTitle);
-    console.log(props.updateTitle());
-    console.log("finished logging");
     props.updateTitle("Login");
     props.history.push("/login");
   };
