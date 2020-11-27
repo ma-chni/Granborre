@@ -60,17 +60,17 @@ function LoginForm(props) {
             <div className="outer-div">
                 <form>
                         <input type="email"
-                            className="input-box"
+                            className="input-field"
                             id="email"
                             aria-describedby="emailHelp"
                             placeholder="Epostaddress"
                             value={state.email}
                             onChange={handleChange}
                         />
-                        <input type="Lösenord"
-                            className="input-box"
+                        <input type="password"
+                            className="input-field"
                             id="password"
-                            placeholder="Password"
+                            placeholder="Lösenord"
                             value={state.password}
                             onChange={handleChange}
                         />

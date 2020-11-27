@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .App {
@@ -8,13 +8,15 @@
   max-width: 375px;
   max-height: 812px;
   border: 1px solid black;
-  margin: 10px auto;
+  margin: auto;
 }
 
 .App-logo {
   pointer-events: none;
   max-width: 60%;
   margin-right: 40%;
+  align-self: flex-start;
+  margin-bottom: auto;
 }
 
 .container {
@@ -29,16 +31,7 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-  .input-box {
+.input-field {
   width: 80%;
   height: 40px;
   margin: 5px auto;
@@ -65,4 +58,18 @@
   border: none;
   color: white;
   font-size: 15px;
+  margin: 5px 0px;
+}
+
+.placeholder {
+  height: 812px;
+  width: 375px;
+  background: url("images/background-img.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.message-box {
+  margin: 5px 0px;
 }

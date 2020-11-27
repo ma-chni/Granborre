@@ -17,7 +17,6 @@
 .green-box {
     position: absolute;
     height: 60vh;
-    bottom: 0px;
     width: inherit;
     background: linear-gradient(rgba(91, 231, 98, 0), rgba(26, 164, 33, 1));
 }
