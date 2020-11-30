@@ -2,11 +2,11 @@
     min-height: 60vh;
 }
 
-.registerMessage {
+ .registerMessage {
     margin-top: 10vh;
 }
 
-.container {
+.container-bg {
     background: url("../../images/background-img.png");
     background-repeat: no-repeat;
     background-position: center center;

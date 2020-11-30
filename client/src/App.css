@@ -14,9 +14,11 @@
 .App-logo {
   pointer-events: none;
   max-width: 60%;
+  margin-top: 3%;
+  margin-left: 3%;
   margin-right: 40%;
-  align-self: flex-start;
   margin-bottom: auto;
+  align-self: flex-start;
 }
 
 .container {
@@ -59,6 +61,7 @@
   color: white;
   font-size: 15px;
   margin: 5px 0px;
+  cursor: pointer;
 }
 
 .placeholder {
@@ -71,9 +74,8 @@
 }
 
 .message-box {
-  margin: 5px 0px;
+  margin: 10px 0px;
 }
-
 
 *,
 *:before,
@@ -412,4 +414,5 @@ input.toggle:checked ~ .menu {
   background-color: white;
   transition: max-height 0.2s ease-out;
 }
+
 

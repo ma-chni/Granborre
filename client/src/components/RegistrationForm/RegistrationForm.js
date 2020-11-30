@@ -8,6 +8,7 @@ import logoWhite from "../../images/logoWhiteTxt.svg";
 function RegistrationForm(props) {
   const [state, setState] = useState({
     email: "",
+    phone: "",
     password: "",
     confirmPassword: "",
     successMessage: null,
@@ -26,6 +27,7 @@ function RegistrationForm(props) {
       const payload = {
         email: state.email,
         password: state.password,
+        phone: state.phone
       };
 
       axios
@@ -72,7 +74,7 @@ function RegistrationForm(props) {
     }
   };
   return (
-    <div className="container">
+    <div className="container container-bg">
       <img src={logoWhite} className="App-logo" alt="logo" />
       <div className="outer-div">
         <form>
@@ -89,7 +91,7 @@ function RegistrationForm(props) {
             type="phone"
             className="input-field"
             id="phone"
-            placeholder="telefonnummer"
+            placeholder="Mobilnummer"
             value={state.phone}
             onChange={handleChange}
           />
@@ -105,7 +107,7 @@ function RegistrationForm(props) {
             type="password"
             className="input-field"
             id="confirmPassword"
-            placeholder="Bekräfta Lösenord"
+            placeholder="Bekräfta lösenord"
             value={state.confirmPassword}
             onChange={handleChange}
           />
