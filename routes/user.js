@@ -111,13 +111,13 @@ router.post(
         });
         if (!user)
           return res.status(400).json({
-            message: "User Does Not Exist"
+            message: "error"
           });
   
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch)
           return res.status(400).json({
-            message: "Incorrect Password!"
+            message: "error"
           });
   
         const payload = {
