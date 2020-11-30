@@ -14,9 +14,11 @@
 .App-logo {
   pointer-events: none;
   max-width: 60%;
+  margin-top: 3%;
+  margin-left: 3%;
   margin-right: 40%;
-  align-self: flex-start;
   margin-bottom: auto;
+  align-self: flex-start;
 }
 
 .container {
@@ -71,5 +73,5 @@
 }
 
 .message-box {
-  margin: 5px 0px;
+  margin: 10px 0px;
 }

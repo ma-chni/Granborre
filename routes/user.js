@@ -20,7 +20,8 @@ router.post(
         check("email", "Please enter a valid email").isEmail(),
         check("password", "Please enter a valid password - password must be at least 6 characters long").isLength({
             min: 6
-        })
+        }),
+        check("phone", "Please enter a valid mobile number").isMobilePhone()
     ],
     async (req, res) => {
         const errors = validationResult(req);
@@ -32,7 +33,8 @@ router.post(
 
         const {
             email,
-            password
+            password,
+            phone
         } = req.body;
         try {
             let user = await User.findOne({
@@ -46,7 +48,8 @@ router.post(
 
             user = new User({
                 email,
-                password
+                password,
+                phone
             });
 
             const salt = await bcrypt.genSalt(10);
@@ -92,7 +95,7 @@ router.post(
       check("email", "Please enter a valid email").isEmail(),
       check("password", "Please enter a valid password").isLength({
         min: 6
-      })
+      }),
     ],
     async (req, res) => {
       const errors = validationResult(req);
