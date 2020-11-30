@@ -1,0 +1,30 @@
+.container-block {
+  height: 812px;
+  width: 375px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-div {
+    margin-bottom: 90%;
+}
+
+.profile-div {
+max-width: 80%;
+margin: 0px auto 20px auto;
+margin-top: 20px;
+}
+
+.preferences-check {
+  display: block;
+  margin: 10px;
+  text-align: left;
+}
+
+.preferences-check input {
+  margin-right: 10px;
+}
+
+.welcome-header {
+    margin: 5px 0px;
+}

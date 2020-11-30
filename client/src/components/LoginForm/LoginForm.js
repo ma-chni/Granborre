@@ -56,7 +56,7 @@ function LoginForm(props) {
     props.updateTitle("Register");
   };
   return (
-    <div className="container">
+    <div className="container container-bg">
       <img src={logoWhite} className="App-logo" alt="logo" />
       <div className="outer-div">
         <form>
