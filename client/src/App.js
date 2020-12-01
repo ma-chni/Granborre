@@ -8,9 +8,10 @@ import Profile from "./components/Profile/Profile"
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AlertComponent from "./components/AlertComponent/AlertComponent";
+import Menu from "./components/Menu/Menu";
 
 function App() {
-  const [title, updateTitle] = useState(null);
+  const [updateTitle] = useState(null);
   const [errorMessage, updateErrorMessage] = useState(null);
   return (
     <Router>
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route path="/profile">
             <Profile />
+          </Route>
+          <Route path="/menu">
+            <Menu />
           </Route>
         </Switch>
         <AlertComponent
