@@ -56,7 +56,13 @@ function Menu(props) {
             </a>
     </ul>
     <div className="bottom">
-            <button className="logout-btn">Logga ut</button>
+            <button className="logout-btn">
+                <a className="no-underline" href="/logout">
+                    <p style={{color: "white"}}>
+                        Logga ut
+                    </p>
+                </a>
+            </button>
     </div>
   </div>
 </div>
