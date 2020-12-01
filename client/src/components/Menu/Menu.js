@@ -18,8 +18,7 @@ for (i = 0; i < coll.length; i++) {
 
 function Menu(props) {
     return(
-<div>
-    <div className="menu-container">
+<div className="container">
         <div className="menu">
             <div className="top">
                 <img src={logo} className="App-logo" alt="logo" />
@@ -37,8 +36,16 @@ function Menu(props) {
                     </button>
                     <div className="content">
                     <ul className="middle">
-                        <li>Skog 1</li>
-                        <li>Skog 2</li>
+                        <a className="no-underline" href="/skog-1">
+                            <li>
+                            <i className="fa fa-tree" style={{color: "red"}}></i>Skog 1
+                            </li>
+                        </a>
+                        <a className="no-underline" href="/skog-2">
+                            <li>
+                            <i className="fa fa-tree" style={{color: "green"}}></i>Skog 2
+                            </li>
+                        </a>
                     </ul>
                     </div>
                 </li>
@@ -53,7 +60,6 @@ function Menu(props) {
     </div>
   </div>
 </div>
-        </div>
     )
 }
 
