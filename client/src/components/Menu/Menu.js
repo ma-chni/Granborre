@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../../images/logo.svg";
+import { withRouter } from "react-router-dom";
 
 function Menu(props) {
   var coll = document.getElementsByClassName("collapsible");
@@ -91,4 +92,4 @@ function Menu(props) {
   );
 }
 
-export default Menu;
+export default withRouter(Menu);
