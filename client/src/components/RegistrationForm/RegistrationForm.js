@@ -37,7 +37,7 @@ function RegistrationForm(props) {
             setState((prevState) => ({
               ...prevState,
               successMessage:
-                "Registration successful. Redirecting to home page..",
+                "Du är nu registrerad. Omdirigerar till första sidan..",
             }));
             localStorage.setItem(ACCESS_TOKEN_NAME, response.data.token);
             redirectToMenu();
@@ -70,7 +70,7 @@ function RegistrationForm(props) {
     if (state.password === state.confirmPassword) {
       sendDetailsToServer();
     } else {
-      props.showError("Passwords do not match");
+      props.showError("Lösenorden matchar inte");
     }
   };
   return (
@@ -128,9 +128,9 @@ function RegistrationForm(props) {
         </div>
 
         <div className="message-box">
-          <span>Already have an account? </span>
+          <span>Har du redan ett konto? </span>
           <span className="loginText" onClick={() => redirectToLogin()}>
-            Login here
+            Logga in
           </span>
         </div>
       </div>
