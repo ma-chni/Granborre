@@ -39,7 +39,7 @@ function App() {
             <Home />
           </Route>
           <Route path="/profile">
-            <Profile />
+            <Profile updateTitle={updateTitle} />
           </Route>
           <Route path="/menu">
             <Menu updateTitle={updateTitle} />

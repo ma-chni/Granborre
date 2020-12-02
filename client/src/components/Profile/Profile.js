@@ -48,7 +48,7 @@ function Profile(props) {
         <button
           type="submit"
           className="grey-btn"
-          onClick={() => redirectToRegister()}
+          onClick={() => redirectToMenu()}
         >
           Spara och tillbaka
         </button>
