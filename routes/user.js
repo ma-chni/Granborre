@@ -17,11 +17,11 @@ const User = require("../model/User");
 router.post(
     "/signup",
     [
-        check("email", "Please enter a valid email").isEmail(),
-        check("password", "Please enter a valid password - password must be at least 6 characters long").isLength({
+        check("email", "Fyll i en giltig epostaddress").isEmail(),
+        check("password", "Fyll i ett giltig lösenord - lösenord måste vara minst 6 bokstäver").isLength({
             min: 6
         }),
-        check("phone", "Please enter a valid mobile number").isMobilePhone()
+        check("phone", "Fyll i ett giltig mobilnummer").isMobilePhone()
     ],
     async (req, res) => {
         const errors = validationResult(req);
@@ -42,7 +42,7 @@ router.post(
             });
             if (user) {
                 return res.status(400).json({
-                    msg: "User Already Exists"
+                    msg: "Användare finns redan"
                 });
             }
 
@@ -92,8 +92,8 @@ router.post(
 router.post(
     "/login",
     [
-      check("email", "Please enter a valid email").isEmail(),
-      check("password", "Please enter a valid password").isLength({
+      check("email", "Fyll i en giltig epostaddress").isEmail(),
+      check("password", "Fyll i ett giltig lösenord").isLength({
         min: 6
       }),
     ],

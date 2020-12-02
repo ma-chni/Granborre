@@ -83,7 +83,7 @@ function LoginForm(props) {
             className="submit-btn"
             onClick={handleSubmitClick}
           >
-            Submit
+            Logga in
           </button>
         </form>
         <div
@@ -94,9 +94,9 @@ function LoginForm(props) {
           {state.successMessage}
         </div>
         <div className="message-box">
-          <span>Dont have an account? </span>
+          <span>Skapa konto? </span>
           <span className="loginText" onClick={() => redirectToRegister()}>
-            Register
+            Registrera
           </span>
         </div>
       </div>

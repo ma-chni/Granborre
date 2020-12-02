@@ -30,20 +30,19 @@ function Profile(props) {
           />
         </svg>
 
-        <h1 className="welcome-header">Welcome!</h1>
+        <h1 className="welcome-header">Välkommen!</h1>
       </div>
       <div className="profile-div">
         <p>
-          Thank you for signing up to use Granborre. Update your preferences
-          below:
+          Tack för att du registrerade dig hos Granborre. Uppdatera era preferenser:
         </p>
         <div className="preferences-check">
           <input type="checkbox" value="emails" />
-          Please email me updates and news
+          Jag vill har uppdateringar och nyhetsbrev på mejl
         </div>
         <div className="preferences-check">
           <input type="checkbox" value="texts" />
-          Please text me updates and news
+          Jag vill har uppdateringar och nyhetsbrev på SMS
         </div>
         <button
           type="submit"
