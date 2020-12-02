@@ -12,9 +12,6 @@ function Analysis() {
             <img className="forest-image" src={forest} alt="forest" />
             <ul className="middle">
             <li>
-                <p>Namn: Skog</p>
-            </li>
-            <li>
                 <p>Latitude: 189.132423</p>
             </li>
             <li>
