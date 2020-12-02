@@ -31,7 +31,7 @@ const redirectToProfile = () => {
   props.history.push("/profile");
 };
 
-function Menu(props) {
+function Menu() {
   return (
     <div className="container">
       <div className="menu">
