@@ -17,6 +17,19 @@ function Menu(props) {
     });
   }
 
+  const redirectToLogin = () => {
+    props.updateTitle("Login");
+    props.history.push("/login");
+  };
+  const redirectToProfile = () => {
+    props.updateTitle("Profile");
+    props.history.push("/profile");
+  };
+  const redirectToAnalys = () => {
+    props.updateTitle("Analys");
+    props.history.push("/analys");
+  };
+
   return (
     <div className="container">
       <div className="menu">
@@ -24,7 +37,7 @@ function Menu(props) {
           <img src={logo} className="App-logo" alt="logo" />
         </div>
         <ul className="middle">
-          <a className="no-underline" href="/profile">
+          <a className="no-underline" onClick={() => redirectToProfile()}>
             <li>
               <i className="fa fa-user"></i>Min Profil
             </li>
@@ -55,7 +68,7 @@ function Menu(props) {
               </ul>
             </div>
           </li>
-          <a className="no-underline" href="/analys">
+          <a className="no-underline" onClick={() => redirectToAnalys()}>
             <li className="analysis">
               <i
                 style={{ marginLeft: "-22px" }}
@@ -68,10 +81,7 @@ function Menu(props) {
         <div className="bottom">
           <button
             className="grey-btn"
-            onClick={(e) => {
-              e.preventDefault();
-              window.location.href = "/login";
-            }}
+            onClick={() => redirectToLogin()}
           >
             Logga ut
           </button>
