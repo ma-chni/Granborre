@@ -3,6 +3,20 @@ import logo from "../../images/logo.svg";
 import { withRouter } from "react-router-dom";
 
 function Menu(props) {
+  
+  const redirectToLogin = () => {
+    props.updateTitle("Login");
+    props.history.push("/login");
+  };
+  const redirectToProfile = () => {
+    props.updateTitle("Profile");
+    props.history.push("/profile");
+  };
+  const redirectToAnalys = () => {
+    props.updateTitle("Analys");
+    props.history.push("/analys");
+  };
+
   var coll = document.getElementsByClassName("collapsible");
   var i;
   
@@ -17,19 +31,6 @@ function Menu(props) {
       }
     });
   }
-
-  const redirectToLogin = () => {
-    props.updateTitle("Login");
-    props.history.push("/login");
-  };
-  const redirectToProfile = () => {
-    props.updateTitle("Profile");
-    props.history.push("/profile");
-  };
-  const redirectToAnalys = () => {
-    props.updateTitle("Analys");
-    props.history.push("/analys");
-  };
 
   return (
     <div className="container">

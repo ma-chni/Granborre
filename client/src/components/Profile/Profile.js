@@ -1,8 +1,15 @@
 import React from "react";
 import logo from "../../images/logo.svg";
 import "./Profile.css";
+import { withRouter } from "react-router-dom";
 
 function Profile(props) {
+
+  const redirectToMenu = () => {
+    props.updateTitle("Menu");
+    props.history.push("/menu");
+  };
+
   return (
     <div className="container-block">
       <img src={logo} className="App-logo" alt="logo" />
@@ -41,10 +48,7 @@ function Profile(props) {
         <button
           type="submit"
           className="grey-btn"
-          onClick={(e) => {
-            e.preventDefault();
-            window.location.href = "/menu";
-          }}
+          onClick={() => redirectToRegister()}
         >
           Spara och tillbaka
         </button>
@@ -53,4 +57,4 @@ function Profile(props) {
   );
 }
 
-export default Profile;
+export default withRouter(Profile);
