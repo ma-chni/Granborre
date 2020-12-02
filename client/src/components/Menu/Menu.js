@@ -4,17 +4,17 @@ import logo from "../../images/logo.svg";
 function Menu(props) {
   const redirectToLogin = () => {
     props.updateTitle("Login");
-    props.history.push("/login");
+    this.props.history.push("/login");
   };
 
   const redirectToAnalysis = () => {
     props.updateTitle("Analys");
-    props.history.push("/analys");
+    this.props.history.push("/analys");
   };
 
   const redirectToProfile = () => {
     props.updateTitle("Profile");
-    props.history.push("/profile");
+    this.props.history.push("/profile");
   };
 
   var coll = document.getElementsByClassName("collapsible");
