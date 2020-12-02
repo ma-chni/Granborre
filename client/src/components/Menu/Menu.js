@@ -1,37 +1,37 @@
 import React from "react";
 import logo from "../../images/logo.svg";
 
-var coll = document.getElementsByClassName("collapsible");
-var i;
+function Menu(props) {
+  const redirectToLogin = () => {
+    props.updateTitle("Login");
+    props.history.push("/login");
+  };
 
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function () {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
-    }
-  });
-}
+  const redirectToAnalysis = () => {
+    props.updateTitle("Analys");
+    props.history.push("/analys");
+  };
 
-const redirectToLogin = () => {
-  props.updateTitle("Login");
-  props.history.push("/login");
-};
+  const redirectToProfile = () => {
+    props.updateTitle("Profile");
+    props.history.push("/profile");
+  };
 
-const redirectToAnalysis = () => {
-  props.updateTitle("Analys");
-  props.history.push("/analys");
-};
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
 
-const redirectToProfile = () => {
-  props.updateTitle("Profile");
-  props.history.push("/profile");
-};
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
 
-function Menu() {
   return (
     <div className="container">
       <div className="menu">
