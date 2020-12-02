@@ -11,7 +11,7 @@ import AlertComponent from "./components/AlertComponent/AlertComponent";
 import Menu from "./components/Menu/Menu";
 
 function App() {
-  const [updateTitle] = useState(null);
+  const [title, updateTitle] = useState(null);
   const [errorMessage, updateErrorMessage] = useState(null);
   return (
     <Router>

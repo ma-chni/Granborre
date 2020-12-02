@@ -33,7 +33,7 @@ function LoginForm(props) {
             ...prevState,
             successMessage: "Login successful. Redirecting to home page..",
           }));
-          redirectToHome();
+          redirectToMenu();
           props.showError(null);
         } else if (response.status === 204) {
           props.showError("Invalid email/password");
@@ -47,9 +47,9 @@ function LoginForm(props) {
         }
       });
   };
-  const redirectToHome = () => {
-    props.updateTitle("Home");
-    props.history.push("/home");
+  const redirectToMenu = () => {
+    props.updateTitle("Menu");
+    props.history.push("/menu");
   };
   const redirectToRegister = () => {
     props.history.push("/register");

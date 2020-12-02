@@ -40,7 +40,7 @@ function RegistrationForm(props) {
                 "Registration successful. Redirecting to home page..",
             }));
             localStorage.setItem(ACCESS_TOKEN_NAME, response.data.token);
-            redirectToHome();
+            redirectToMenu();
             props.showError(null);
           } else {
             props.showError("Some error occurred");
@@ -57,9 +57,9 @@ function RegistrationForm(props) {
         });
     }
   };
-  const redirectToHome = () => {
-    props.updateTitle("Home");
-    props.history.push("/home");
+  const redirectToMenu = () => {
+    props.updateTitle("Menu");
+    props.history.push("/menu");
   };
   const redirectToLogin = () => {
     props.updateTitle("Login");

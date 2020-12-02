@@ -2,7 +2,6 @@ import React from "react";
 import logo from "../../images/logo.svg";
 import "./Profile.css";
 
-
 function Profile(props) {
   return (
     <div className="container-block">
@@ -25,8 +24,8 @@ function Profile(props) {
         </svg>
 
         <h1 className="welcome-header">Welcome!</h1>
-        </div>
-        <div className="profile-div">
+      </div>
+      <div className="profile-div">
         <p>
           Thank you for signing up to use Granborre. Update your preferences
           below:
@@ -39,8 +38,15 @@ function Profile(props) {
           <input type="checkbox" value="texts" />
           Please text me updates and news
         </div>
-        <button type="submit" className="submit-btn">
-          Spara
+        <button
+          type="submit"
+          className="grey-btn"
+          onClick={(e) => {
+            e.preventDefault();
+            window.location.href = "/menu";
+          }}
+        >
+          Spara och tillbaka
         </button>
       </div>
     </div>
