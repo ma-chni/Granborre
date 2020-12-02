@@ -83,7 +83,7 @@ setTimeout(function () {
       }
     });
   }
-}, 100);
+}, 300);
 
 
 export default withRouter(Menu);
