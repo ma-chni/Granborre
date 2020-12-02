@@ -3,7 +3,6 @@ import logo from "../../images/logo.svg";
 import { withRouter } from "react-router-dom";
 
 function Menu(props) {
-  
   const redirectToLogin = () => {
     props.updateTitle("Login");
     props.history.push("/login");
@@ -17,21 +16,6 @@ function Menu(props) {
     props.history.push("/analys");
   };
 
-  var coll = document.getElementsByClassName("collapsible");
-  var i;
-  
-  for (i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function () {
-      this.classList.toggle("active");
-      var content = this.nextElementSibling;
-      if (content.style.display === "block") {
-        content.style.display = "none";
-      } else {
-        content.style.display = "block";
-      }
-    });
-  }
-
   return (
     <div className="container">
       <div className="menu">
@@ -39,11 +23,9 @@ function Menu(props) {
           <img src={logo} className="App-logo" alt="logo" />
         </div>
         <ul className="middle">
-          <a className="no-underline" onClick={() => redirectToProfile()}>
-            <li>
-              <i className="fa fa-user"></i>Min Profil
-            </li>
-          </a>
+          <li className="no-underline" onClick={() => redirectToProfile()}>
+            <i className="fa fa-user"></i>Min Profil
+          </li>
           <li>
             <button
               type="button"
@@ -55,36 +37,30 @@ function Menu(props) {
             </button>
             <div className="content">
               <ul className="middle">
-                <a className="no-underline" href="/skog-1">
-                  <li>
-                    <i className="fa fa-tree" style={{ color: "red" }}></i>Skog
-                    1
-                  </li>
-                </a>
-                <a className="no-underline" href="/skog-2">
-                  <li>
-                    <i className="fa fa-tree" style={{ color: "green" }}></i>
-                    Skog 2
-                  </li>
-                </a>
+                <li
+                  className="no-underline" /* onClick={() => redirectToSkog1()} */
+                >
+                  <i className="fa fa-tree" style={{ color: "red" }}></i>Skog 1
+                </li>
+                <li
+                  className="no-underline" /* onClick={() => redirectToSkog2()} */
+                >
+                  <i className="fa fa-tree" style={{ color: "green" }}></i>
+                  Skog 2
+                </li>
               </ul>
             </div>
           </li>
-          <a className="no-underline" onClick={() => redirectToAnalys()}>
-            <li className="analysis">
-              <i
-                style={{ marginLeft: "-22px" }}
-                className="fa fa-area-chart"
-              ></i>
-              Analys
-            </li>
-          </a>
+          <li
+            className="no-underline analysis"
+            onClick={() => redirectToAnalys()}
+          >
+            <i style={{ marginLeft: "-22px" }} className="fa fa-area-chart"></i>
+            Analys
+          </li>
         </ul>
         <div className="bottom">
-          <button
-            className="grey-btn"
-            onClick={() => redirectToLogin()}
-          >
+          <button className="grey-btn" onClick={() => redirectToLogin()}>
             Logga ut
           </button>
         </div>
@@ -92,5 +68,22 @@ function Menu(props) {
     </div>
   );
 }
+
+setTimeout(function () {
+  const coll = document.getElementsByClassName("collapsible");
+
+  for (let i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      const content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
+}, 100);
+
 
 export default withRouter(Menu);
