@@ -16,6 +16,21 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
+const redirectToLogin = () => {
+  props.updateTitle("Login");
+  props.history.push("/login");
+};
+
+const redirectToAnalysis = () => {
+  props.updateTitle("Analys");
+  props.history.push("/analys");
+};
+
+const redirectToProfile = () => {
+  props.updateTitle("Profile");
+  props.history.push("/profile");
+};
+
 function Menu(props) {
   return (
     <div className="container">
@@ -24,7 +39,13 @@ function Menu(props) {
           <img src={logo} className="App-logo" alt="logo" />
         </div>
         <ul className="middle">
-          <a className="no-underline" href="/profile">
+          <a
+            className="no-underline"
+            onClick={(e) => {
+              e.preventDefault();
+              redirectToProfile();
+            }}
+          >
             <li>
               <i className="fa fa-user"></i>Min Profil
             </li>
@@ -55,7 +76,13 @@ function Menu(props) {
               </ul>
             </div>
           </li>
-          <a className="no-underline" href="/analys">
+          <a
+            className="no-underline"
+            onClick={(e) => {
+              e.preventDefault();
+              redirectToAnalysis();
+            }}
+          >
             <li className="analysis">
               <i
                 style={{ marginLeft: "-22px" }}
@@ -70,7 +97,7 @@ function Menu(props) {
             className="grey-btn"
             onClick={(e) => {
               e.preventDefault();
-              window.location.href = "/login";
+              redirectToLogin();
             }}
           >
             Logga ut

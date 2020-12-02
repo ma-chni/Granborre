@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use(express.static('client/build'));
 
 app.get("/*", (req, res) => {
-  res.send('Index Page');
+  res.json({ message: "API Working" });
 });
 
 /**
