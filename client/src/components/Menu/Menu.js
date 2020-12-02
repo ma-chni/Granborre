@@ -16,6 +16,22 @@ function Menu(props) {
     props.history.push("/analys");
   };
 
+  setTimeout(function () {
+    const coll = document.getElementsByClassName("collapsible");
+  
+    for (let i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        const content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+  }, 400);
+
   return (
     <div className="container">
       <div className="menu">
@@ -68,22 +84,5 @@ function Menu(props) {
     </div>
   );
 }
-
-setTimeout(function () {
-  const coll = document.getElementsByClassName("collapsible");
-
-  for (let i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function () {
-      this.classList.toggle("active");
-      const content = this.nextElementSibling;
-      if (content.style.display === "block") {
-        content.style.display = "none";
-      } else {
-        content.style.display = "block";
-      }
-    });
-  }
-}, 300);
-
 
 export default withRouter(Menu);
