@@ -68,7 +68,7 @@ function Menu(props) {
             </div>
           </li>
           <li
-            className="no-underline analysis"
+            className="no-underline"
             onClick={() => redirectToAnalys()}
           >
             <i style={{ marginLeft: "-22px" }} className="fa fa-area-chart"></i>
