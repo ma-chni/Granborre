@@ -2,24 +2,9 @@ import React from "react";
 import logo from "../../images/logo.svg";
 
 function Menu(props) {
-  const redirectToLogin = () => {
-    props.updateTitle("Login");
-    this.props.history.push("/login");
-  };
-
-  const redirectToAnalysis = () => {
-    props.updateTitle("Analys");
-    this.props.history.push("/analys");
-  };
-
-  const redirectToProfile = () => {
-    props.updateTitle("Profile");
-    this.props.history.push("/profile");
-  };
-
   var coll = document.getElementsByClassName("collapsible");
   var i;
-
+  
   for (i = 0; i < coll.length; i++) {
     coll[i].addEventListener("click", function () {
       this.classList.toggle("active");
@@ -39,13 +24,7 @@ function Menu(props) {
           <img src={logo} className="App-logo" alt="logo" />
         </div>
         <ul className="middle">
-          <a
-            className="no-underline"
-            onClick={(e) => {
-              e.preventDefault();
-              redirectToProfile();
-            }}
-          >
+          <a className="no-underline" href="/profile">
             <li>
               <i className="fa fa-user"></i>Min Profil
             </li>
@@ -76,13 +55,7 @@ function Menu(props) {
               </ul>
             </div>
           </li>
-          <a
-            className="no-underline"
-            onClick={(e) => {
-              e.preventDefault();
-              redirectToAnalysis();
-            }}
-          >
+          <a className="no-underline" href="/analys">
             <li className="analysis">
               <i
                 style={{ marginLeft: "-22px" }}
@@ -97,7 +70,7 @@ function Menu(props) {
             className="grey-btn"
             onClick={(e) => {
               e.preventDefault();
-              redirectToLogin();
+              window.location.href = "/login";
             }}
           >
             Logga ut

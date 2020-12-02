@@ -9,6 +9,10 @@ const cors = require('cors');
 // Initiate Mongo Server
 InitiateMongoServer();
 
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+}
+
 const app = express();
 app.use(morgan('dev'));
 
@@ -20,8 +24,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('client/build'));
 
-app.get("/*", (req, res) => {
-  res.json({ message: "API Working" });
+app.get('*', (request, response) => {
+	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 /**
