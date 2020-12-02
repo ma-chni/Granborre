@@ -20,8 +20,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('client/build'));
 
-app.get("/", (req, res) => {
-  res.json({ message: "API Working" });
+app.get("/*", (req, res) => {
+  res.send('Index Page');
 });
 
 /**
