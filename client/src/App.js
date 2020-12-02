@@ -9,6 +9,7 @@ import Profile from "./components/Profile/Profile";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AlertComponent from "./components/AlertComponent/AlertComponent";
 import Menu from "./components/Menu/Menu";
+import Analysis from "./components/Analysis/Analysis";
 
 
 
@@ -45,6 +46,9 @@ function App() {
           </Route>
           <Route path="/menu">
             <Menu updateTitle={updateTitle} />
+          </Route>
+          <Route path="/analys">
+            <Analysis />
           </Route>
         </Switch>
         <AlertComponent

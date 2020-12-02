@@ -406,4 +406,10 @@ input.toggle:checked ~ .menu {
   transition: max-height 0.2s ease-out;
 }
 
+.forest-image {
+  width: 250px;
+  height: 250px;
+  margin-bottom: -200px;
+}
+
 
