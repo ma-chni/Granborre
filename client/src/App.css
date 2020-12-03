@@ -409,7 +409,13 @@ input.toggle:checked ~ .menu {
 .forest-image {
   width: 250px;
   height: 250px;
-  margin-bottom: -200px;
+  margin-bottom: -210px;
+  margin-left:15px;
+}
+
+.long-lat {
+  margin-top: 240px;
+  margin-bottom: 40px;
 }
 
 
