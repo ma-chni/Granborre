@@ -7,14 +7,22 @@ function Menu(props) {
     props.updateTitle("Login");
     props.history.push("/login");
   };
+
   const redirectToProfile = () => {
     props.updateTitle("Profile");
     props.history.push("/profile");
   };
+
   const redirectToAnalys = () => {
     props.updateTitle("Analys");
     props.history.push("/analys");
   };
+
+  const redirectToNewForest = () => {
+    props.updateTitle("New Forest");
+    props.history.push("/newforest");
+  };
+
 
   setTimeout(function () {
     const coll = document.getElementsByClassName("collapsible");
@@ -53,10 +61,9 @@ function Menu(props) {
             </button>
             <div className="content">
               <ul className="middle">
-                <li
-                  className="no-underline" /* onClick={() => redirectToSkog1()} */
-                >
-                  <i className="fa fa-tree" style={{ color: "red" }}></i>Skog 1
+                <li className="no-underline" onClick={() => redirectToNewForest()}>
+                  <i className="fa fa-tree" style={{ color: "red" }}></i>Lägg
+                  till en skog
                 </li>
                 <li
                   className="no-underline" /* onClick={() => redirectToSkog2()} */
@@ -67,10 +74,7 @@ function Menu(props) {
               </ul>
             </div>
           </li>
-          <li
-            className="no-underline"
-            onClick={() => redirectToAnalys()}
-          >
+          <li className="no-underline" onClick={() => redirectToAnalys()}>
             <i style={{ marginLeft: "-22px" }} className="fa fa-area-chart"></i>
             Analys
           </li>

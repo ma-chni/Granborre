@@ -5,11 +5,11 @@ import LoginForm from "./components/LoginForm/LoginForm";
 import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
 import Home from "./components/Home/Home";
 import Profile from "./components/Profile/Profile";
-
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AlertComponent from "./components/AlertComponent/AlertComponent";
 import Menu from "./components/Menu/Menu";
 import Analysis from "./components/Analysis/Analysis";
+import NewForest from "./components/Map/NewForest";
 
 
 
@@ -49,6 +49,9 @@ function App() {
           </Route>
           <Route path="/analys">
             <Analysis />
+          </Route>
+          <Route path="/newforest">
+            <NewForest />
           </Route>
         </Switch>
         <AlertComponent
