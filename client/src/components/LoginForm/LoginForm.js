@@ -59,6 +59,7 @@ function LoginForm(props) {
     <div className="container container-bg">
       <img src={logoWhite} className="App-logo" alt="logo" />
       <div className="outer-div">
+        <h1 className="white-text">Logga in</h1>
         <form>
           <input
             type="email"

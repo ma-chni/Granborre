@@ -418,4 +418,8 @@ input.toggle:checked ~ .menu {
   margin-bottom: 40px;
 }
 
+.white-text {
+  color:white;
+}
+
 
