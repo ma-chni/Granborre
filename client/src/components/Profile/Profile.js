@@ -7,7 +7,7 @@ const ImgUpload =({
 })=>
   <label htmlFor="photo-upload" className="custom-file-upload fas">
     <div className="img-wrap img-upload" >
-      <img for="photo-upload" src={src}/>
+      <img className="img-class" for="photo-upload" src={src}/>
     </div>
     <input id="photo-upload" type="file" onChange={onChange}/> 
   </label>
@@ -44,11 +44,11 @@ const Profile =({
 })=>
   <div className="card">
     <form onSubmit={onSubmit}>
-    <img src={logo} className="App-logo" alt="logo" />
+    <img className="img-class" src={logo} className="App-logo-profile" alt="logo" />
       <h1>Min Profil</h1>
       <label className="custom-file-upload fas">
         <div className="img-wrap" >
-          <img for="photo-upload" src={src}/>
+          <img className="img-class" for="photo-upload" src={src}/>
         </div>
       </label>
       <div className="name">{name}</div>
@@ -62,7 +62,7 @@ const Edit =({
 })=>
   <div className="card">
     <form onSubmit={onSubmit}>
-    <img src={logo} className="App-logo" alt="logo" />
+    <img className="img-class" src={logo} className="App-logo" alt="logo" />
       <h1>Min Profil</h1>
         {children}
       <button type="submit" className="save">Spara </button>
