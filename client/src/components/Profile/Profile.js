@@ -38,11 +38,11 @@ function Profile(props) {
         </p>
         <div className="preferences-check">
           <input type="checkbox" value="emails" />
-          Jag vill har uppdateringar och nyhetsbrev på mejl
+          Jag vill ha uppdateringar och nyhetsbrev på mejl
         </div>
         <div className="preferences-check">
           <input type="checkbox" value="texts" />
-          Jag vill har uppdateringar och nyhetsbrev på SMS
+          Jag vill ha uppdateringar och nyhetsbrev på SMS
         </div>
         <button
           type="submit"

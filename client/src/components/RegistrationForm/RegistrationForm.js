@@ -77,6 +77,7 @@ function RegistrationForm(props) {
     <div className="container container-bg">
       <img src={logoWhite} className="App-logo" alt="logo" />
       <div className="outer-div">
+        <h1 className="white-text">Registrera dig</h1>
         <form>
           <input
             type="email"

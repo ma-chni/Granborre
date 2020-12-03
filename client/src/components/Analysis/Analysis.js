@@ -1,7 +1,11 @@
 import React from 'react';
 import logoWhite from "../../images/logo.svg";
 import forest from '../../images/forest.png'; // with import
-function Analysis() {
+import { withRouter } from "react-router-dom";
+function Analysis(props) {
+    const redirectToHome = () => {
+        props.history.push("/menu");
+      };
     return(
     <div className="container">
         <div className="menu">
@@ -10,16 +14,15 @@ function Analysis() {
             </div>
             <h2>Analys av skog</h2>
             <img className="forest-image" src={forest} alt="forest" />
-            <ul className="middle">
-            <li>
+            <div className="long-lat">
                 <p>Latitude: 189.132423</p>
-            </li>
-            <li>
                 <p>Longitude: 50.122341</p>
-            </li>
-        </ul>
+            </div>
+            <button className="grey-btn" onClick={() => redirectToHome()}>
+            Tillbaka
+          </button>
             </div>
         </div>
     )
 }
-export default Analysis;
+export default withRouter(Analysis);
