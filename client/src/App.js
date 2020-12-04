@@ -60,7 +60,9 @@ function App() {
             userEmail={userEmail}/>
           </Route>
           <Route path="/forestMap">
-            <ForestMap 
+            <ForestMap
+            showError={updateErrorMessage}
+            userEmail={userEmail} 
             />
           </Route>
         </Switch>

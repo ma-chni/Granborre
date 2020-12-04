@@ -21,7 +21,7 @@ function LoginForm(props) {
 
   const handleSubmitClick = (e) => {
     e.preventDefault();
-    props.updateUserEmail(state.email)
+    props.updateUserEmail(state.email);
     const payload = {
       email: state.email,
       password: state.password,

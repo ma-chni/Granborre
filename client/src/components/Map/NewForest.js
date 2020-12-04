@@ -22,15 +22,20 @@ let coordinates = {
 function NewForest(props) {
   const [position, setPosition] = useState(center);
 
+  const positionValue = (e) => {
+    e.preventDefault();
+    console.log("The console position ",position);
+  }
+
   const handleSubmitClick = (e) => {
     e.preventDefault();
-    console.log(props.userEmail);
-    const payload = {
+       const payload = {
       email: props.userEmail,
       coordinates: position
     };
+    console.log(payload)
     axios
-      .post(API_BASE_URL + "/user/me", payload)
+      .post(API_BASE_URL + "/user/saveforest", payload)
       .then(function (response) {
         if (response.status === 200) {
           console.log("Log in successful")
@@ -42,32 +47,43 @@ function NewForest(props) {
         }
       })
       .catch(function (error) {
+        console.log(error.response);
         if (error.response.data.message === "error") {
           props.showError("Invalid email/password. Please try again");
         }
       });
   };
   return (
-    <MapContainer
-      className="markercluster-map"
-      center={center}
-      zoom={5}
-      maxZoom={18}
-    >
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      />
+    <div>
+      <MapContainer
+        className="markercluster-map"
+        center={center}
+        zoom={5}
+        maxZoom={18}
+      >
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        />
 
-      <DraggableMarker position={position} setPosition={setPosition}/>
+        <DraggableMarker position={position} setPosition={setPosition} />
+
+      </MapContainer>
       <button
         type="submit"
         className="submit-btn"
         onClick={handleSubmitClick}
       >
         Spara Skogen
-          </button>
-    </MapContainer>
+      </button>
+      <button
+        type="submit"
+        className="submit-btn"
+        onClick={positionValue}
+      >
+        Position value
+      </button>
+    </div>
   );
 }
 
