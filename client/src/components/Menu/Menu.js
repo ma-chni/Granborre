@@ -23,22 +23,13 @@ function Menu(props) {
     props.history.push("/newforest");
   };
 
+  const redirectToForestMap = () => {
+    props.updateTitle("Forest Map");
+    props.history.push("/forestmap");
+  };
 
-  setTimeout(function () {
-    const coll = document.getElementsByClassName("collapsible");
+
   
-    for (let i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function () {
-        this.classList.toggle("active");
-        const content = this.nextElementSibling;
-        if (content.style.display === "block") {
-          content.style.display = "none";
-        } else {
-          content.style.display = "block";
-        }
-      });
-    }
-  }, 400);
 
   return (
     <div className="container">
@@ -66,7 +57,7 @@ function Menu(props) {
                   till en skog
                 </li>
                 <li
-                  className="no-underline" /* onClick={() => redirectToSkog2()} */
+                  className="no-underline" onClick={() => redirectToForestMap()}
                 >
                   <i className="fa fa-tree" style={{ color: "green" }}></i>
                   Skog 2
@@ -88,5 +79,20 @@ function Menu(props) {
     </div>
   );
 }
+setTimeout(function () {
+  const coll = document.getElementsByClassName("collapsible");
+
+  for (let i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      const content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
+}, 3000);
 
 export default withRouter(Menu);

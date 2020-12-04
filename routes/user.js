@@ -150,11 +150,60 @@ router.post(
 router.get("/me", auth, async (req, res) => {
   try {
     // request.user is getting fetched from Middleware after token authentication
-    const user = await User.findById(req.user.id);
+    const user = await User.findOne(req.email);
     res.json(user);
   } catch (e) {
     res.send({ message: "Error in Fetching user" });
   }
 });
 
+router.post(
+  "/saveforest",
+  
+  async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array(),
+      });
+    }
+    const { email, coordinates } = req.body;
+
+    try {
+      let user = await Character.findOneAndUpdate(email, coordinates);
+      if (!user)
+        return res.status(400).json({
+          message: "error",
+        });
+
+      
+
+      const payload = {
+        user: {
+          id: user.id,
+        },
+      };
+
+      jwt.sign(
+        payload,
+        "randomString",
+        {
+          expiresIn: 3600,
+        },
+        (err, token) => {
+          if (err) throw err;
+          res.status(200).json({
+            token,
+          });
+        }
+      );
+    } catch (e) {
+      console.error(e);
+      res.status(500).json({
+        message: "Server Error",
+      });
+    }
+  }
+);
 module.exports = router;

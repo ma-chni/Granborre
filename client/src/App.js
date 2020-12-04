@@ -10,11 +10,13 @@ import AlertComponent from "./components/AlertComponent/AlertComponent";
 import Menu from "./components/Menu/Menu";
 import Analysis from "./components/Analysis/Analysis";
 import NewForest from "./components/Map/NewForest";
+import ForestMap from "./components/ForestMap/ForestMap";
 
 
 
 function App() {
   const [title, updateTitle] = useState(null);
+  const [userEmail, updateUserEmail] = useState(null);
   const [errorMessage, updateErrorMessage] = useState(null);
   return (
     <Router>
@@ -30,12 +32,14 @@ function App() {
             <RegistrationForm
               showError={updateErrorMessage}
               updateTitle={updateTitle}
+              updateUserEmail={updateUserEmail}
             />
           </Route>
           <Route path="/login">
             <LoginForm
               showError={updateErrorMessage}
               updateTitle={updateTitle}
+              updateUserEmail={updateUserEmail}
             />
           </Route>
           <Route path="/home">
@@ -51,7 +55,13 @@ function App() {
             <Analysis />
           </Route>
           <Route path="/newforest">
-            <NewForest />
+            <NewForest 
+            showError={updateErrorMessage}
+            userEmail={userEmail}/>
+          </Route>
+          <Route path="/forestMap">
+            <ForestMap 
+            />
           </Route>
         </Switch>
         <AlertComponent

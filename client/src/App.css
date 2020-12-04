@@ -399,7 +399,7 @@ input.toggle:checked ~ .menu {
 }
 
 .content {
-  display: none;
+ /*  display: none; */
   overflow: hidden;
   background-color: white;
   margin-top: -187px;
