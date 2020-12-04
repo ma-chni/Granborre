@@ -54,13 +54,13 @@ function Menu(props) {
               <ul className="middle">
                 <li className="no-underline" onClick={() => redirectToNewForest()}>
                   <i className="fa fa-tree" style={{ color: "red" }}></i>Lägg
-                  till en skog
+                  till min skog
                 </li>
                 <li
                   className="no-underline" onClick={() => redirectToForestMap()}
                 >
                   <i className="fa fa-tree" style={{ color: "green" }}></i>
-                  Skog 2
+                  Min skog
                 </li>
               </ul>
             </div>

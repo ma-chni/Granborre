@@ -48,7 +48,7 @@ router.post(
         email,
         password,
         phone,
-        coordinates
+        coordinates,
       });
 
       const salt = await bcrypt.genSalt(10);
@@ -149,32 +149,20 @@ router.post(
   }
 );
 
-router.get("/getcoordinates", auth,
- async (req, res) => {
-  const errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    return res.status(400).json({
-      errors: errors.array(),
-    });
-  }
-
+router.get("/getcoordinates", /* auth, */ async (req, res) => {
   try {
     // request.user is getting fetched from Middleware after token authentication
     const email = req.headers.email;
     let user = await User.findOne({ email: email });
-    if(!user) {
+    if (!user) {
       return res.status(400).json({
-        "response": "Failed to find the user",
-      })
-    }
-    else
-      {
+        response: "Failed to find the user",
+      });
+    } else {
       return res.status(200).json({
-        "response": user,
-      })
+        response: user,
+      });
     }
-    
   } catch (e) {
     res.send({ message: "Error in Fetching user" });
   }
@@ -197,16 +185,16 @@ router.post(
     console.log("The coordinates ", coordinates);
 
     try {
-      let user = await User.findOneAndUpdate({ email: email }, { coordinates: coordinates });
+      let user = await User.findOneAndUpdate(
+        { email: email },
+        { coordinates: coordinates }
+      );
       if (!user) {
         return res.status(400).json({
           message: "error",
-        })
+        });
       }
-    }
-
-
-    catch (e) {
+    } catch (e) {
       console.log("Bad error");
       console.error(e);
       res.status(500).json({
@@ -216,4 +204,3 @@ router.post(
   }
 );
 module.exports = router;
-
