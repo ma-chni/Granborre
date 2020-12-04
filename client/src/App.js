@@ -4,7 +4,7 @@ import "./App.css";
 import LoginForm from "./components/LoginForm/LoginForm";
 import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
 import Home from "./components/Home/Home";
-import Profile from "./components/Profile/Profile";
+import CardProfile from "./components/Profile/Profile";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AlertComponent from "./components/AlertComponent/AlertComponent";
 import Menu from "./components/Menu/Menu";
@@ -46,7 +46,7 @@ function App() {
             <Home />
           </Route>
           <Route path="/profile">
-            <Profile updateTitle={updateTitle} />
+            <CardProfile />
           </Route>
           <Route path="/menu">
             <Menu updateTitle={updateTitle} />
