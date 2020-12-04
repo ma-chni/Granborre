@@ -69,7 +69,7 @@ function RegistrationForm(props) {
   };
   const handleSubmitClick = (e) => {
     e.preventDefault();
-    props.updateUserEmail(state.email);
+    /* props.updateUserEmail(state.email); */
     if (state.password === state.confirmPassword) {
       sendDetailsToServer();
     } else {
