@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 const auth = require("./../middleware/auth");
 const User = require("../model/User");
+const { findByIdAndUpdate } = require("../model/User");
 
 /* *
  * @method - POST
@@ -32,7 +33,7 @@ router.post(
       });
     }
 
-    const { email, password, phone } = req.body;
+    const { email, password, phone, coordinates } = req.body;
     try {
       let user = await User.findOne({
         email,
@@ -47,6 +48,7 @@ router.post(
         email,
         password,
         phone,
+        coordinates
       });
 
       const salt = await bcrypt.genSalt(10);
@@ -147,14 +149,71 @@ router.post(
   }
 );
 
-router.get("/me", auth, async (req, res) => {
+router.get("/getcoordinates", auth,
+ async (req, res) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      errors: errors.array(),
+    });
+  }
+
   try {
     // request.user is getting fetched from Middleware after token authentication
-    const user = await User.findById(req.user.id);
-    res.json(user);
+    const email = req.headers.email;
+    let user = await User.findOne({ email: email });
+    if(!user) {
+      return res.status(400).json({
+        "response": "Failed to find the user",
+      })
+    }
+    else
+      {
+      return res.status(200).json({
+        "response": user,
+      })
+    }
+    
   } catch (e) {
     res.send({ message: "Error in Fetching user" });
   }
 });
 
+router.post(
+  "/saveforest",
+  [check("email", "no email provided").isEmail()],
+
+  async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array(),
+      });
+    }
+
+    const { email, coordinates } = req.body;
+    console.log("The coordinates ", coordinates);
+
+    try {
+      let user = await User.findOneAndUpdate({ email: email }, { coordinates: coordinates });
+      if (!user) {
+        return res.status(400).json({
+          message: "error",
+        })
+      }
+    }
+
+
+    catch (e) {
+      console.log("Bad error");
+      console.error(e);
+      res.status(500).json({
+        message: "Server Error",
+      });
+    }
+  }
+);
 module.exports = router;
+

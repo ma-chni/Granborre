@@ -4,17 +4,19 @@ import "./App.css";
 import LoginForm from "./components/LoginForm/LoginForm";
 import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
 import Home from "./components/Home/Home";
-import Profile from "./components/Profile/Profile";
+import CardProfile from "./components/Profile/Profile";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AlertComponent from "./components/AlertComponent/AlertComponent";
 import Menu from "./components/Menu/Menu";
 import Analysis from "./components/Analysis/Analysis";
 import NewForest from "./components/Map/NewForest";
+import ForestMap from "./components/ForestMap/ForestMap";
 
 
 
 function App() {
   const [title, updateTitle] = useState(null);
+  const [userEmail, updateUserEmail] = useState(null);
   const [errorMessage, updateErrorMessage] = useState(null);
   return (
     <Router>
@@ -30,19 +32,21 @@ function App() {
             <RegistrationForm
               showError={updateErrorMessage}
               updateTitle={updateTitle}
+              updateUserEmail={updateUserEmail}
             />
           </Route>
           <Route path="/login">
             <LoginForm
               showError={updateErrorMessage}
               updateTitle={updateTitle}
+              updateUserEmail={updateUserEmail}
             />
           </Route>
           <Route path="/home">
             <Home />
           </Route>
           <Route path="/profile">
-            <Profile updateTitle={updateTitle} />
+            <CardProfile />
           </Route>
           <Route path="/menu">
             <Menu updateTitle={updateTitle} />
@@ -51,7 +55,15 @@ function App() {
             <Analysis />
           </Route>
           <Route path="/newforest">
-            <NewForest />
+            <NewForest 
+            showError={updateErrorMessage}
+            userEmail={userEmail}/>
+          </Route>
+          <Route path="/forestMap">
+            <ForestMap
+            showError={updateErrorMessage}
+            userEmail={userEmail} 
+            />
           </Route>
         </Switch>
         <AlertComponent

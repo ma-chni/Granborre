@@ -13,6 +13,10 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  coordinates: {
+    type: Object,
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now(),

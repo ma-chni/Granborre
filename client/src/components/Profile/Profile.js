@@ -1,59 +1,133 @@
 import React from "react";
 import logo from "../../images/logo.svg";
 import "./Profile.css";
-import { withRouter } from "react-router-dom";
-
-function Profile(props) {
-
-  const redirectToMenu = () => {
-    props.updateTitle("Menu");
-    props.history.push("/menu");
-  };
-
-  return (
-    <div className="container-block">
-      <img src={logo} className="App-logo" alt="logo" />
-      <div className="header-div">
-        <svg
-          width="80"
-          height="80"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fillRule="evenodd"
-            clipRule="evenodd"
-            d="M12 4C9.79004 4 8 5.78998 8 8C8 10.21 9.79004 12 12 12C14.21 12 16 10.21 16 8C16 5.78998 14.21 4 12 4ZM14.1 8C14.1 6.84003 13.16 5.90002 12 5.90002C10.84 5.90002 9.90002 6.84003 9.90002 8C9.90002 9.16003 10.84 10.1 12 10.1C13.16 10.1 14.1 9.16003 14.1 8ZM18.1 17C18.1 16.36 14.97 14.9 12 14.9C9.03003 14.9 5.90002 16.36 5.90002 17V18.1H18.1V17ZM4 17C4 14.34 9.32996 13 12 13C14.67 13 20 14.34 20 17V20H4V17Z"
-            fill="#08BC1A"
-            fillOpacity="1"
-          />
-        </svg>
-
-        <h1 className="welcome-header">Välkommen!</h1>
-      </div>
-      <div className="profile-div">
-        <p>
-          Tack för att du registrerade dig hos Granborre. Uppdatera era preferenser:
-        </p>
-        <div className="preferences-check">
-          <input type="checkbox" value="emails" />
-          Jag vill ha uppdateringar och nyhetsbrev på mejl
-        </div>
-        <div className="preferences-check">
-          <input type="checkbox" value="texts" />
-          Jag vill ha uppdateringar och nyhetsbrev på SMS
-        </div>
-        <button
-          type="submit"
-          className="grey-btn"
-          onClick={() => redirectToMenu()}
-        >
-          Spara och tillbaka
-        </button>
-      </div>
+const ImgUpload =({
+  onChange,
+  src
+})=>
+  <label htmlFor="photo-upload" className="custom-file-upload fas">
+    <div className="img-wrap img-upload" >
+      <img className="img-class" for="photo-upload" src={src}/>
     </div>
-  );
+    <input id="photo-upload" type="file" onChange={onChange}/> 
+  </label>
+const Name =({
+  onChange,
+  value
+})=>
+  <div className="field">
+    <label htmlFor="name">
+      Namn:
+    </label>
+    <input 
+      id="name" 
+      type="text" 
+      onChange={onChange} 
+      maxlength="25" 
+      value={value} 
+      placeholder="Namn" 
+      required/>
+      <br></br>
+      Skicka Email om nyheter och uppdateringar
+      <input type="checkbox" value="emails"/>
+      Skicka SMS om nyheter och uppdateringar
+      <input type="checkbox" value="text"/>
+  </div>
+const Status =()=>
+  <div className="field">
+  </div>
+const Profile =({
+  onSubmit,
+  src,
+  name,
+  status,
+})=>
+  <div className="card">
+    <form onSubmit={onSubmit}>
+    <img className="img-class" src={logo} className="App-logo-profile" alt="logo" />
+      <h1>Min Profil</h1>
+      <label className="custom-file-upload fas">
+        <div className="img-wrap" >
+          <img className="img-class" for="photo-upload" src={src}/>
+        </div>
+      </label>
+      <div className="name">{name}</div>
+      <div className="status">{status}</div>
+      <button type="submit" className="edit">Edit Profile </button>
+    </form>
+  </div>
+const Edit =({
+  onSubmit,
+  children,
+})=>
+  <div className="card">
+    <form onSubmit={onSubmit}>
+    <img className="img-class" src={logo} className="App-logo" alt="logo" />
+      <h1>Min Profil</h1>
+        {children}
+      <button type="submit" className="save">Spara </button>
+    </form>
+  </div>
+class CardProfile extends React.Component {
+  state = {
+    file: '',
+    imagePreviewUrl: 'https://github.com/OlgaKoplik/CodePen/blob/master/profile.jpg?raw=true',
+    name:'',
+    status:'',
+    active: 'edit'
+  }
+  photoUpload = e =>{
+    e.preventDefault();
+    const reader = new FileReader();
+    const file = e.target.files[0];
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imagePreviewUrl: reader.result
+      });
+    }
+    reader.readAsDataURL(file);
+  }
+  editName = e =>{
+    const name = e.target.value;
+    this.setState({
+      name,
+    });
+  }
+  editStatus = e => {
+    const status = e.target.value;
+    this.setState({
+      status,
+    });
+  }
+  handleSubmit= e =>{
+    e.preventDefault();
+    let activeP = this.state.active === 'edit' ? 'profile' : 'edit';
+    this.setState({
+      active: activeP,
+    })
+  }
+  render() {
+    const {imagePreviewUrl, 
+           name, 
+           status, 
+           active} = this.state;
+    return (
+      <div>
+        {(active === 'edit')?(
+          <Edit onSubmit={this.handleSubmit}>
+            <ImgUpload onChange={this.photoUpload} src={imagePreviewUrl}/>
+            <Name onChange={this.editName} value={name}/>
+            <Status onChange={this.editStatus} value={status}/>
+          </Edit>
+        ):(
+          <Profile 
+            onSubmit={this.handleSubmit} 
+            src={imagePreviewUrl} 
+            name={name} 
+            status={status}/>)}
+      </div>
+    )
+  }
 }
-
-export default withRouter(Profile);
+export default CardProfile;
