@@ -153,7 +153,6 @@ router.post(
 
 router.get("/getcoordinates", /* auth, */ async (req, res) => {
   try {
-    // request.user is getting fetched from Middleware after token authentication
     const email = req.headers.email;
     let user = await User.findOne({ email: email });
     if (!user) {

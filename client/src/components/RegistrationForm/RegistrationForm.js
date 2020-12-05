@@ -32,8 +32,35 @@ function RegistrationForm(props) {
         coordinates: { lat: 0.0, lng: 0.0 },
         smsChoice: false,
         mailChoice: false,
-        name: " "
+        name: " ",
       };
+
+      const request = require("request");
+
+      request.post(
+        "https://api.46elks.com/a1/SMS",
+        {
+          auth: {
+            user: "u0ade4dce8345535c6f6f310a353a342f",
+            pass: "26E2DA80D8BFBC928970F4329CD186CA",
+          },
+
+          form: {
+            from: "Granborre",
+            to: state.phone,
+            message: "Thank you for signing up with Granborre. Your forest is being monitored and we will keep you posted about any updates",
+          },
+        },
+        (err, response, body) => {
+          if (err) {
+            console.error(err);
+          } else if (response.statusCode !== 200) {
+            console.error("Error", response.statusCode, body);
+          } else {
+            console.log("Success!");
+          }
+        }
+      );
 
       axios
         .post(API_BASE_URL + "/user/signup", payload)
