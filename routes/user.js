@@ -5,7 +5,8 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 const auth = require("./../middleware/auth");
 const User = require("../model/User");
-const { findByIdAndUpdate } = require("../model/User");
+const https = require("https");
+const querystring = require("querystring");
 
 /* *
  * @method - POST
@@ -33,7 +34,15 @@ router.post(
       });
     }
 
-    const { email, password, phone, coordinates, smsChoice, mailChoice, name } = req.body;
+    const {
+      email,
+      password,
+      phone,
+      coordinates,
+      smsChoice,
+      mailChoice,
+      name,
+    } = req.body;
     try {
       let user = await User.findOne({
         email,
@@ -50,8 +59,8 @@ router.post(
         phone,
         coordinates,
         smsChoice,
-        mailChoice, 
-        name
+        mailChoice,
+        name,
       });
 
       const salt = await bcrypt.genSalt(10);
@@ -64,6 +73,8 @@ router.post(
           id: user.id,
         },
       };
+
+      sendSMS(phone);
 
       jwt.sign(
         payload,
@@ -151,23 +162,26 @@ router.post(
   }
 );
 
-router.get("/getcoordinates", /* auth, */ async (req, res) => {
-  try {
-    const email = req.headers.email;
-    let user = await User.findOne({ email: email });
-    if (!user) {
-      return res.status(400).json({
-        response: "Failed to find the user",
-      });
-    } else {
-      return res.status(200).json({
-        response: user,
-      });
+router.get(
+  "/getcoordinates",
+  /* auth, */ async (req, res) => {
+    try {
+      const email = req.headers.email;
+      let user = await User.findOne({ email: email });
+      if (!user) {
+        return res.status(400).json({
+          response: "Failed to find the user",
+        });
+      } else {
+        return res.status(200).json({
+          response: user,
+        });
+      }
+    } catch (e) {
+      res.send({ message: "Error in Fetching user" });
     }
-  } catch (e) {
-    res.send({ message: "Error in Fetching user" });
   }
-});
+);
 
 router.post(
   "/saveforest",
@@ -179,7 +193,7 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({
         errors: errors.array(),
-        message: "Failed to save coordinates"
+        message: "Failed to save coordinates",
       });
     }
 
@@ -194,8 +208,7 @@ router.post(
         return res.status(400).json({
           message: "failed",
         });
-      }
-      else if (user) {
+      } else if (user) {
         return res.status(200).json({
           message: "OK",
         });
@@ -219,7 +232,7 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({
         errors: errors.array(),
-        message: "Failed to save preferences"
+        message: "Failed to save preferences",
       });
     }
 
@@ -227,14 +240,13 @@ router.post(
     try {
       let user = await User.findOneAndUpdate(
         { email: email },
-        { smsChoice: smsChoice, mailChoice: mailChoice, name: name },
+        { smsChoice: smsChoice, mailChoice: mailChoice, name: name }
       );
       if (!user) {
         return res.status(400).json({
           message: "failed",
         });
-      }
-      else if (user) {
+      } else if (user) {
         return res.status(200).json({
           message: "OK",
         });
@@ -267,5 +279,32 @@ router.get("/getuser", async (req, res) => {
   }
 });
 
+function sendSMS(number) {
+  const username = "u0ade4dce8345535c6f6f310a353a342f";
+  const password = "26E2DA80D8BFBC928970F4329CD186CA";
+  const key = Buffer.from(username + ":" + password).toString("base64");
+  const options = {
+    hostname: "api.46elks.com",
+    path: "/a1/SMS",
+    method: "POST",
+    headers: {
+      Authorization: "Basic " + key,
+    },
+  };
+
+  const formattedNumber = "+46" + number.substring(1);
+
+  const postFields = {
+    from: "Granborre",
+    to: formattedNumber,
+    message:
+      "Tack så mycket för att ni registrerat er hos Granborre. När ni har lagt till och sparat er skog så kommer vi övervaka den och meddela er vid ett potentiellt granbarkborreangrepp!",
+  };
+  const postData = querystring.stringify(postFields);
+  const request = https.request(options);
+
+  request.write(postData);
+  request.end();
+}
 
 module.exports = router;
