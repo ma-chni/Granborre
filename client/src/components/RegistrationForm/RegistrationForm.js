@@ -23,15 +23,14 @@ function RegistrationForm(props) {
   const sendDetailsToServer = () => {
     if (state.email.length && state.password.length) {
       props.showError(null);
-
+      props.updateUserEmail(state.email);
       const payload = {
         email: state.email,
         password: state.password,
         phone: state.phone,
         coordinates: { lat: 0.0, lng: 0.0 },
       };
-      props.updateUserEmail(state.email);
-      
+
       axios
         .post(API_BASE_URL + "/user/signup", payload)
         .then(function (response) {
