@@ -30,7 +30,6 @@ function NewForest(props) {
       email: props.userEmail,
       coordinates: position,
     };
-    console.log(payload);
     
     axios
       .post(API_BASE_URL + "/user/saveforest", payload)
@@ -38,13 +37,11 @@ function NewForest(props) {
         if (response.status === 200) {
           props.showError(null);
         } else {
-          console.log("in the else");
           props.showError("Forest not saved");
         }
       })
       .catch(function (error) {
         if (error.response) {
-          console.log(error.response);
           props.showError("Forest not saved. Please return to login page and try again");
         }
       });

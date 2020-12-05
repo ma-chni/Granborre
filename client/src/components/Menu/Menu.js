@@ -3,6 +3,7 @@ import logo from "../../images/logo.svg";
 import { withRouter } from "react-router-dom";
 
 function Menu(props) {
+  
   const redirectToLogin = () => {
     props.updateTitle("Login");
     props.history.push("/login");
@@ -65,6 +66,10 @@ function Menu(props) {
           <li className="no-underline" onClick={() => redirectToAnalys()}>
             <i style={{ marginLeft: "-22px" }} className="fa fa-area-chart"></i>
             Analys
+          </li>
+          <li className="no-underline" style={{cursor: "default"}}>
+            <i style={{ marginLeft: "-22px" }} className="fa fa-question-circle"></i>
+            Söka hjälp
           </li>
         </ul>
         <div className="bottom">

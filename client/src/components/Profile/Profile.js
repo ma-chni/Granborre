@@ -41,14 +41,14 @@ const Name = ({
     <input
       type="checkbox"
       name="mailChoice"
-      defaultChecked={mailValue}
+      checked={mailValue}
       onChange={handleChangeMail}
     />
     Skicka SMS om nyheter och uppdateringar
     <input
       type="checkbox"
       name="smsChoice"
-      defaultChecked={smsValue}
+      checked={smsValue}
       onChange={handleChangeSms}
     />
   </div>
@@ -106,6 +106,33 @@ class CardProfile extends React.Component {
     mailChecked: false,
   };
 
+  async componentDidMount() {
+    const props = this.props; 
+    await axios
+      .get(API_BASE_URL + "/user/getuser", {
+        headers: {
+          email: props.userEmail,
+        },
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          this.setState((prevState) => {
+            return {
+              ...prevState,
+              name: response.data.response.name,
+              smsChecked: response.data.response.smsChoice,
+              mailChecked: response.data.response.mailChoice
+            }
+          });
+        }
+      })
+      .catch((error) => {
+        if (error) {
+          props.showError("Failed to fetch profile information");
+        }
+      });
+  }
+
   handleChangeSms = (e) => {
     this.setState((prevState) => {
       return {
@@ -154,7 +181,7 @@ class CardProfile extends React.Component {
     this.setState({
       active: activeP,
     });
-    
+
     const props = this.props;
     const payload = {
       email: this.props.userEmail,
@@ -182,6 +209,7 @@ class CardProfile extends React.Component {
   };
 
   render() {
+    
     const {
       imagePreviewUrl,
       name,
@@ -190,6 +218,7 @@ class CardProfile extends React.Component {
       smsChecked,
       mailChecked,
     } = this.state;
+
     return (
       <div className="container">
         {active === "edit" ? (

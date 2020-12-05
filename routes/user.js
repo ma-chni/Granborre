@@ -79,7 +79,6 @@ router.post(
         }
       );
     } catch (err) {
-      console.log(err.message);
       res.status(500).send("Error in Saving");
     }
   }
@@ -198,7 +197,6 @@ router.post(
         });
       }
     } catch (e) {
-      console.log("Bad error");
       console.error(e);
       res.status(500).json({
         message: "Server Error",
@@ -233,7 +231,6 @@ router.post(
         });
       }
     } catch (e) {
-      console.log("Bad error");
       console.error(e);
       res.status(500).json({
         message: "Server Error",
@@ -241,6 +238,25 @@ router.post(
     }
   }
 );
+
+router.get("/getuser", async (req, res) => {
+  try {
+    // request.user is getting fetched from Middleware after token authentication
+    const email = req.headers.email;
+    let user = await User.findOne({ email: email });
+    if (!user) {
+      return res.status(400).json({
+        response: "Failed to find the user",
+      });
+    } else {
+      return res.status(200).json({
+        response: user,
+      });
+    }
+  } catch (e) {
+    return res.status(700).json({ message: "Error in fetching user" });
+  }
+});
 
 
 module.exports = router;

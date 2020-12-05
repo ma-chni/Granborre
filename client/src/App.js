@@ -25,6 +25,7 @@ function App() {
             <RegistrationForm
               showError={updateErrorMessage}
               updateTitle={updateTitle}
+              updateUserEmail={updateUserEmail}
             />
           </Route>
           <Route path="/register">
@@ -50,7 +51,9 @@ function App() {
             userEmail={userEmail} />
           </Route>
           <Route path="/menu">
-            <Menu updateTitle={updateTitle} />
+            <Menu 
+            updateTitle={updateTitle}
+            showError={updateErrorMessage} />
           </Route>
           <Route path="/analys">
             <Analysis />
