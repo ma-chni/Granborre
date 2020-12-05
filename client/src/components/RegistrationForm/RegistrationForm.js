@@ -30,7 +30,8 @@ function RegistrationForm(props) {
         phone: state.phone,
         coordinates: { lat: 0.0, lng: 0.0 },
       };
-
+      props.updateUserEmail(state.email);
+      
       axios
         .post(API_BASE_URL + "/user/signup", payload)
         .then(function (response) {
@@ -68,7 +69,6 @@ function RegistrationForm(props) {
   };
   const handleSubmitClick = (e) => {
     e.preventDefault();
-    props.updateUserEmail(state.email);
     if (state.password === state.confirmPassword) {
       sendDetailsToServer();
     } else {
