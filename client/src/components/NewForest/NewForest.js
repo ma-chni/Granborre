@@ -31,6 +31,7 @@ function NewForest(props) {
       coordinates: position,
     };
     console.log(payload);
+    
     axios
       .post(API_BASE_URL + "/user/saveforest", payload)
       .then(function (response) {

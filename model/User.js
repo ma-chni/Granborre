@@ -17,6 +17,18 @@ const UserSchema = mongoose.Schema({
     type: Object,
     required: true,
   },
+  smsChoice: {
+    type: Boolean,
+    required: true,
+  }, 
+  mailChoice: {
+    type: Boolean,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now(),

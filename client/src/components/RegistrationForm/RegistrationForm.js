@@ -24,12 +24,15 @@ function RegistrationForm(props) {
     if (state.email.length && state.password.length) {
       props.showError(null);
       props.updateUserEmail(state.email);
-      
+
       const payload = {
         email: state.email,
         password: state.password,
         phone: state.phone,
         coordinates: { lat: 0.0, lng: 0.0 },
+        smsChoice: false,
+        mailChoice: false,
+        name: " "
       };
 
       axios

@@ -33,7 +33,7 @@ router.post(
       });
     }
 
-    const { email, password, phone, coordinates } = req.body;
+    const { email, password, phone, coordinates, smsChoice, mailChoice, name } = req.body;
     try {
       let user = await User.findOne({
         email,
@@ -49,6 +49,9 @@ router.post(
         password,
         phone,
         coordinates,
+        smsChoice,
+        mailChoice, 
+        name
       });
 
       const salt = await bcrypt.genSalt(10);
@@ -203,4 +206,41 @@ router.post(
     }
   }
 );
+
+router.post(
+  "/savepreferences",
+  [check("email", "no email provided").isEmail()],
+
+  async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array(),
+        message: "Failed to save preferences"
+      });
+    }
+
+    const { email, smsChoice, mailChoice, name } = req.body;
+    try {
+      let user = await User.findOneAndUpdate(
+        { email: email },
+        { smsChoice: smsChoice, mailChoice: mailChoice, name: name },
+      );
+      if (!user) {
+        return res.status(400).json({
+          message: "failed",
+        });
+      }
+    } catch (e) {
+      console.log("Bad error");
+      console.error(e);
+      res.status(500).json({
+        message: "Server Error",
+      });
+    }
+  }
+);
+
+
 module.exports = router;
