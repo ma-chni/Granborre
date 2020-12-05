@@ -3,7 +3,6 @@ import logo from "../../images/logo.svg";
 import { withRouter } from "react-router-dom";
 
 function Menu(props) {
-  
   const redirectToLogin = () => {
     props.updateTitle("Login");
     props.history.push("/login");
@@ -29,6 +28,16 @@ function Menu(props) {
     props.history.push("/forestmap");
   };
 
+  const handleClick = (e) => {
+    const { target } = e;
+    target.classList.toggle("active");
+    const content = target.parentElement.lastChild;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  };
   return (
     <div className="container">
       <div className="menu">
@@ -39,23 +48,21 @@ function Menu(props) {
           <li className="no-underline" onClick={() => redirectToProfile()}>
             <i className="fa fa-user"></i>Min Profil
           </li>
-          <li>
-            <button
-              type="button"
-              className="collapsible"
-              style={{ marginLeft: "20px" }}
-            >
+          <li className="collapsible" style={{ marginLeft: "20px" }}>
               <i className="fa fa-tree"></i>
-              Mina Skogar
-            </button>
+              <p onClick={handleClick} className="my-forest-para">Mina Skogar</p>
             <div className="content">
-              <ul className="middle">
-                <li className="no-underline" onClick={() => redirectToNewForest()}>
+              <ul className="smaller-list">
+                <li
+                  className="no-underline"
+                  onClick={() => redirectToNewForest()}
+                >
                   <i className="fa fa-tree" style={{ color: "red" }}></i>Lägg
                   till min skog
                 </li>
                 <li
-                  className="no-underline" onClick={() => redirectToForestMap()}
+                  className="no-underline"
+                  onClick={() => redirectToForestMap()}
                 >
                   <i className="fa fa-tree" style={{ color: "green" }}></i>
                   Min skog
@@ -67,8 +74,11 @@ function Menu(props) {
             <i style={{ marginLeft: "-22px" }} className="fa fa-area-chart"></i>
             Analys
           </li>
-          <li className="no-underline" style={{cursor: "default"}}>
-            <i style={{ marginLeft: "-22px" }} className="fa fa-question-circle"></i>
+          <li className="no-underline" style={{ cursor: "default" }}>
+            <i
+              style={{ marginLeft: "10px" }}
+              className="fa fa-question-circle"
+            ></i>
             Söka hjälp
           </li>
         </ul>
@@ -81,21 +91,5 @@ function Menu(props) {
     </div>
   );
 }
-
-setTimeout(function () {
-  const coll = document.getElementsByClassName("collapsible");
-
-  for (let i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function () {
-      this.classList.toggle("active");
-      const content = this.nextElementSibling;
-      if (content.style.display === "block") {
-        content.style.display = "none";
-      } else {
-        content.style.display = "block";
-      }
-    });
-  }
-}, 2000);
 
 export default withRouter(Menu);
