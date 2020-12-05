@@ -24,6 +24,7 @@ function RegistrationForm(props) {
     if (state.email.length && state.password.length) {
       props.showError(null);
       props.updateUserEmail(state.email);
+      
       const payload = {
         email: state.email,
         password: state.password,
