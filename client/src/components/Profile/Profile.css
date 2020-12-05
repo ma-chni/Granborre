@@ -16,6 +16,8 @@ form{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 375px;
+  height: 812px;
 }
 .field{
   margin: 10px;
