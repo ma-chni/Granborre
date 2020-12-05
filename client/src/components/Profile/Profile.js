@@ -3,6 +3,7 @@ import logo from "../../images/logo.svg";
 import "./Profile.css";
 import axios from "axios";
 import { API_BASE_URL } from "../../constants/apiConstants";
+import { withRouter } from "react-router-dom";
 
 const ImgUpload = ({ onChange, src }) => (
   <label htmlFor="photo-upload" className="custom-file-upload fas">
@@ -54,7 +55,7 @@ const Name = ({
   </div>
 );
 const Status = () => <div className="field"></div>;
-const Profile = ({ onSubmit, src, name, status }) => (
+const Profile = ({ onSubmit, src, name, status, onRedirect }) => (
   <div className="card">
     <form className="profile-form" onSubmit={onSubmit}>
       <img className="App-logo" src={logo} alt="logo" />
@@ -75,9 +76,12 @@ const Profile = ({ onSubmit, src, name, status }) => (
         Edit Profile{" "}
       </button>
     </form>
+    <button type="submit" className="edit" onClick={onRedirect}>
+        Tillbaka
+      </button>
   </div>
 );
-const Edit = ({ onSubmit, children }) => (
+const Edit = ({ onSubmit ,onRedirect, children }) => (
   <div className="card">
     <form className="profile-form" onSubmit={onSubmit}>
       <img className="App-logo" src={logo} alt="logo" />
@@ -86,8 +90,11 @@ const Edit = ({ onSubmit, children }) => (
       <button type="submit" className="save">
         Spara
       </button>
-    </form>
-  </div>
+      </form>
+      <button type="submit" className="save" onClick={onRedirect} >
+        Tillbaka
+      </button>
+    </div>
 );
 
 class CardProfile extends React.Component {
@@ -105,6 +112,13 @@ class CardProfile extends React.Component {
     smsChecked: false,
     mailChecked: false,
   };
+
+  redirectsToMenu = () => {
+    console.log(this.props);
+    const props = this.props;
+    props.history.push("/menu");
+    props.showError(null);
+};
 
   async componentDidMount() {
     const props = this.props; 
@@ -182,13 +196,15 @@ class CardProfile extends React.Component {
       active: activeP,
     });
 
-    const props = this.props;
+      const props = this.props;
     const payload = {
       email: this.props.userEmail,
       smsChoice: this.state.smsChecked,
       mailChoice: this.state.mailChecked,
       name: this.state.name,
     };
+
+    
 
     axios
       .post(API_BASE_URL + "/user/savepreferences", payload)
@@ -222,7 +238,7 @@ class CardProfile extends React.Component {
     return (
       <div className="container">
         {active === "edit" ? (
-          <Edit onSubmit={this.handleSubmit}>
+          <Edit onSubmit={this.handleSubmit} onRedirect={this.redirectsToMenu}>
             <ImgUpload onChange={this.photoUpload} src={imagePreviewUrl} />
             <Name
               nameOnChange={this.editName}
@@ -233,17 +249,18 @@ class CardProfile extends React.Component {
               nameValue={name}
             />
             <Status onChange={this.editStatus} value={status} />
-          </Edit>
+          </Edit>         
         ) : (
           <Profile
             onSubmit={this.handleSubmit}
             src={imagePreviewUrl}
             name={name}
             status={status}
+            onRedirect={this.redirectsToMenu}
           />
         )}
       </div>
     );
   }
 }
-export default CardProfile;
+export default withRouter(CardProfile);
