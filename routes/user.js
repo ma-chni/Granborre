@@ -196,6 +196,11 @@ router.post(
           message: "failed",
         });
       }
+      else if (user) {
+        return res.status(200).json({
+          message: "OK",
+        });
+      }
     } catch (e) {
       console.error(e);
       res.status(500).json({
@@ -228,6 +233,11 @@ router.post(
       if (!user) {
         return res.status(400).json({
           message: "failed",
+        });
+      }
+      else if (user) {
+        return res.status(200).json({
+          message: "OK",
         });
       }
     } catch (e) {
