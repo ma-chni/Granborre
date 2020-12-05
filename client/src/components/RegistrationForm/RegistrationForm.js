@@ -35,7 +35,7 @@ function RegistrationForm(props) {
         name: " ",
       };
 
-      const request = require("request");
+      /* const request = require("request");
 
       request.post(
         "https://api.46elks.com/a1/SMS",
@@ -60,7 +60,45 @@ function RegistrationForm(props) {
             console.log("Success!");
           }
         }
-      );
+      ); */
+
+      const https = require("https");
+      const querystring = require("querystring");
+
+      const username = "u0ade4dce8345535c6f6f310a353a342f";
+      const password = "26E2DA80D8BFBC928970F4329CD186CA";
+      const postFields = {
+        from: "Granborre",
+        to: state.phone,
+        message: "Thank you for signing up with Granborre. Your forest is being monitored and we will keep you posted about any updates",
+      };
+
+      const key = Buffer.from(username + ":" + password).toString("base64");
+      const postData = querystring.stringify(postFields);
+
+      const options = {
+        hostname: "api.46elks.com",
+        path: "/a1/SMS",
+        method: "POST",
+        headers: {
+          Authorization: "Basic " + key,
+        },
+      };
+
+      const callback = (response) => {
+        var str = "";
+        response.on("data", (chunk) => {
+          str += chunk;
+        });
+
+        response.on("end", () => {
+          console.log(str);
+        });
+      };
+
+      var request = https.request(options, callback);
+      request.write(postData);
+      request.end();
 
       axios
         .post(API_BASE_URL + "/user/signup", payload)
