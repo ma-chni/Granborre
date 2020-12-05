@@ -43,12 +43,12 @@ const Profile =({
   status,
 })=>
   <div className="card">
-    <form onSubmit={onSubmit}>
+    <form className="profile-form" onSubmit={onSubmit}>
     <img className="App-logo" src={logo} alt="logo" />
-      <h1 style={{ marginBottom: "70px" }}>Min Profil</h1>
-      <label className="custom-file-upload fas" >
+      <h1>Min Profil</h1>
+      <label className="custom-file-upload fas">
         <div className="img-wrap" >
-          <img style={{ marginBottom: "200px" }} className="img-class" for="photo-upload" src={src} alt="photoUpload"/>
+          <img className="img-class" for="photo-upload" src={src} alt="photoUpload"/>
         </div>
       </label>
       <div className="name">{name}</div>
@@ -61,7 +61,7 @@ const Edit =({
   children,
 })=>
   <div className="card">
-    <form onSubmit={onSubmit}>
+    <form className="profile-form" onSubmit={onSubmit}>
     <img className="App-logo" src={logo} alt="logo" />
       <h1>Min Profil</h1>
         {children}

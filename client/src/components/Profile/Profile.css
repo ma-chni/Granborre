@@ -11,7 +11,7 @@
   0%  {background-position: 166% -25%, 220% -69%;}
   100%{background-position: 120% -5%, 200% -40%;}
 }
-form{
+.profile-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -63,12 +63,10 @@ input[type="file"] {
 .img-upload:hover:before{
  opacity: 1;
 }
-
 .img-class {
   width: auto;
   height: 100%;
 }
-
 label{
   text-transform: uppercase;
   font-weight: 700;
