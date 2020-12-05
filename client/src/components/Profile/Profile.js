@@ -114,7 +114,6 @@ class CardProfile extends React.Component {
   };
 
   redirectsToMenu = () => {
-    console.log(this.props);
     const props = this.props;
     props.history.push("/menu");
     props.showError(null);
