@@ -7,7 +7,7 @@ const ImgUpload =({
 })=>
   <label htmlFor="photo-upload" className="custom-file-upload fas">
     <div className="img-wrap img-upload" >
-      <img className="img-class" for="photo-upload" src={src}/>
+      <img className="img-class" for="photo-upload" src={src} alt="photoUpload"/>
     </div>
     <input id="photo-upload" type="file" onChange={onChange}/> 
   </label>
@@ -43,12 +43,12 @@ const Profile =({
   status,
 })=>
   <div className="card">
-    <form onSubmit={onSubmit}>
-    <img className="img-class" src={logo} className="App-logo-profile" alt="logo" />
+    <form className="profile-form" onSubmit={onSubmit}>
+    <img className="App-logo" src={logo} alt="logo" />
       <h1>Min Profil</h1>
       <label className="custom-file-upload fas">
         <div className="img-wrap" >
-          <img className="img-class" for="photo-upload" src={src}/>
+          <img className="img-class" for="photo-upload" src={src} alt="photoUpload"/>
         </div>
       </label>
       <div className="name">{name}</div>
@@ -61,8 +61,8 @@ const Edit =({
   children,
 })=>
   <div className="card">
-    <form onSubmit={onSubmit}>
-    <img className="img-class" src={logo} className="App-logo" alt="logo" />
+    <form className="profile-form" onSubmit={onSubmit}>
+    <img className="App-logo" src={logo} alt="logo" />
       <h1>Min Profil</h1>
         {children}
       <button type="submit" className="save">Spara </button>
