@@ -28,8 +28,7 @@ function RegistrationForm(props) {
         email: state.email,
         password: state.password,
         phone: state.phone,
-        coordinates : {lat: 0.000,
-                       lng: 0.000}
+        coordinates: { lat: 0.0, lng: 0.0 },
       };
 
       axios
@@ -69,7 +68,7 @@ function RegistrationForm(props) {
   };
   const handleSubmitClick = (e) => {
     e.preventDefault();
-    /* props.updateUserEmail(state.email); */
+    props.updateUserEmail(state.email);
     if (state.password === state.confirmPassword) {
       sendDetailsToServer();
     } else {

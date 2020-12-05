@@ -1,13 +1,10 @@
-import { React, useState, useRef, useMemo } from "react";
-import logo from "../../images/logo.svg";
+import { React, useState } from "react";
 import "./NewForest.css";
 import { withRouter } from "react-router-dom";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import { Icon } from "leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
 import axios from "axios";
 import { API_BASE_URL } from "../../constants/apiConstants";
-import DraggableMarker from "../Draggable/Draggable"
-
+import DraggableMarker from "../Draggable/Draggable";
 
 const center = {
   lat: 62.51193074415761,
@@ -20,41 +17,39 @@ let coordinates = {
 };
 
 function NewForest(props) {
-  const [position, setPosition] = useState(center);
+  const redirectToMenu = () => {
+    props.history.push("/menu");
+    props.showError(null);
+  };
 
-  const positionValue = (e) => {
-    e.preventDefault();
-    console.log("The console position ",position);
-  }
+  const [position, setPosition] = useState(center);
 
   const handleSubmitClick = (e) => {
     e.preventDefault();
-       const payload = {
+    const payload = {
       email: props.userEmail,
-      coordinates: position
+      coordinates: position,
     };
-    console.log(payload)
+    console.log(payload);
     axios
       .post(API_BASE_URL + "/user/saveforest", payload)
       .then(function (response) {
         if (response.status === 200) {
-          console.log("Log in successful")
           props.showError(null);
-        } else if (response.status === 204) {
-          props.showError("Invalid email/password");
         } else {
-          props.showError("Invalid email/password");
+          console.log("in the else");
+          props.showError("Forest not saved");
         }
       })
       .catch(function (error) {
-        console.log(error.response);
-        if (error.response.data.message === "error") {
-          props.showError("Invalid email/password. Please try again");
+        if (error.response) {
+          console.log(error.response);
+          props.showError("Forest not saved. Please return to login page and try again");
         }
       });
   };
   return (
-    <div>
+    <div className="new-map-container">
       <MapContainer
         className="markercluster-map"
         center={center}
@@ -67,29 +62,22 @@ function NewForest(props) {
         />
 
         <DraggableMarker position={position} setPosition={setPosition} />
-
       </MapContainer>
       <button
         type="submit"
-        className="submit-btn"
+        className="submit-btn over-btn top-over-btn"
         onClick={handleSubmitClick}
       >
         Spara Skogen
       </button>
       <button
-        type="submit"
-        className="submit-btn"
-        onClick={positionValue}
+        className="grey-btn over-btn bottom-over-btn"
+        onClick={() => redirectToMenu()}
       >
-        Position value
+        Tillbaka
       </button>
     </div>
   );
 }
-
-
-
-
-
 
 export default withRouter(NewForest);

@@ -43,7 +43,7 @@ const Profile =({
   status,
 })=>
   <div className="card">
-    <form onSubmit={onSubmit}>
+    <form className="profile-form" onSubmit={onSubmit}>
     <img className="img-class" src={logo} className="App-logo-profile" alt="logo" />
       <h1>Min Profil</h1>
       <label className="custom-file-upload fas">
@@ -61,7 +61,7 @@ const Edit =({
   children,
 })=>
   <div className="card">
-    <form onSubmit={onSubmit}>
+    <form className="profile-form" onSubmit={onSubmit}>
     <img className="img-class" src={logo} className="App-logo" alt="logo" />
       <h1>Min Profil</h1>
         {children}
@@ -113,7 +113,7 @@ class CardProfile extends React.Component {
            status, 
            active} = this.state;
     return (
-      <div>
+      <div className="container">
         {(active === 'edit')?(
           <Edit onSubmit={this.handleSubmit}>
             <ImgUpload onChange={this.photoUpload} src={imagePreviewUrl}/>

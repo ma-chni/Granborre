@@ -7,35 +7,41 @@ import { loadModules } from "esri-loader";
 import "./ForestMap.css";
 
 const WebMapView = (props) => {
+  
+  const redirectToMenu = () => {
+    props.history.push("/menu");
+    props.showError(null);
+  };
+
   const mapRef = useRef();
   const center = { lat: 0.0, lng: 0.0 };
   /* const [coordinates, setCoordinates] = useState(center); */
 
-  if(center.lat === 0 && center.lng === 0) {
-      axios
-        .get(API_BASE_URL + "/user/getcoordinates", {
-          headers: {
-            /* token: localStorage.getItem("login_access_token"), */
-            email: props.userEmail,
-          },
-        })
-        .then(function (response) {
-          if (response.status === 200) {
-            /* setCoordinates(response.data.response.coordinates); */
-            center.lat = response.data.response.coordinates.lat;
-            center.lng = response.data.response.coordinates.lng;
-            loadMap(center);
-          }
-        })
-        .catch(function (error) {
-          if (error) {
-            props.showError("Failed to fetch coordinates");
-          }
-        });
+  if (center.lat === 0 && center.lng === 0) {
+    axios
+      .get(API_BASE_URL + "/user/getcoordinates", {
+        headers: {
+          /* token: localStorage.getItem("login_access_token"), */
+          email: props.userEmail,
+        },
+      })
+      .then(function (response) {
+        if (response.status === 200) {
+          /* setCoordinates(response.data.response.coordinates); */
+          center.lat = response.data.response.coordinates.lat;
+          center.lng = response.data.response.coordinates.lng;
+          loadMap(center);
+        }
+      })
+      .catch(function (error) {
+        if (error) {
+          props.showError("Failed to fetch coordinates");
+        }
+      });
   }
 
   function loadMap(center) {
-    console.log("The coordinates in load map are ",center);
+    console.log("The coordinates in load map are ", center);
     // lazy load the required ArcGIS API for JavaScript modules and CSS
     loadModules(["esri/Map", "esri/views/MapView"], { css: true }).then(
       ([ArcGISMap, MapView]) => {
@@ -44,7 +50,7 @@ const WebMapView = (props) => {
         });
         // load the map view at the ref's DOM node
 
-        console.log(center.lat, center.lng)
+        console.log(center.lat, center.lng);
         const view = new MapView({
           container: mapRef.current,
           map: map,
@@ -59,9 +65,15 @@ const WebMapView = (props) => {
         };
       }
     );
-  };
-  return <div className="webmap" ref={mapRef} />;
+  }
+  return (
+    <div className="container">
+      <div className="webmap" ref={mapRef} />
+      <button className="grey-btn over-btn" onClick={() => redirectToMenu()}>
+        Tillbaka
+      </button>
+    </div>
+  );
 };
-
 
 export default withRouter(WebMapView);

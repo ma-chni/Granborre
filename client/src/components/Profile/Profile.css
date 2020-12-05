@@ -17,6 +17,10 @@ form{
   justify-content: center;
   align-items: center;
 }
+.profile-form {
+  height: 812px;
+}
+
 .field{
   margin: 10px;
   display: flex;

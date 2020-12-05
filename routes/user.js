@@ -178,11 +178,11 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({
         errors: errors.array(),
+        message: "Failed to save coordinates"
       });
     }
 
     const { email, coordinates } = req.body;
-    console.log("The coordinates ", coordinates);
 
     try {
       let user = await User.findOneAndUpdate(
@@ -191,7 +191,7 @@ router.post(
       );
       if (!user) {
         return res.status(400).json({
-          message: "error",
+          message: "failed",
         });
       }
     } catch (e) {

@@ -1,0 +1,18 @@
+.leaflet-container {
+	width: 100%;
+	height: 100%;
+	/* transform: translateY(35px); */
+  }
+
+  .new-map-container {
+	height: 812px;
+	width: 375px;
+  }
+
+  .top-over-btn {
+	  bottom: 105px !important;
+  }
+
+  .bottom-over-btn {
+	  bottom: 100px !important;
+  }

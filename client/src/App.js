@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AlertComponent from "./components/AlertComponent/AlertComponent";
 import Menu from "./components/Menu/Menu";
 import Analysis from "./components/Analysis/Analysis";
-import NewForest from "./components/Map/NewForest";
+import NewForest from "./components/NewForest/NewForest";
 import ForestMap from "./components/ForestMap/ForestMap";
 
 
