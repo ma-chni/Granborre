@@ -9,15 +9,14 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AlertComponent from "./components/AlertComponent/AlertComponent";
 import Menu from "./components/Menu/Menu";
 import Analysis from "./components/Analysis/Analysis";
-import NewForest from "./components/Map/NewForest";
+import NewForest from "./components/NewForest/NewForest";
 import ForestMap from "./components/ForestMap/ForestMap";
-
-
 
 function App() {
   const [title, updateTitle] = useState(null);
   const [userEmail, updateUserEmail] = useState(null);
   const [errorMessage, updateErrorMessage] = useState(null);
+  
   return (
     <Router>
       <div className="App">
@@ -26,6 +25,7 @@ function App() {
             <RegistrationForm
               showError={updateErrorMessage}
               updateTitle={updateTitle}
+              updateUserEmail={updateUserEmail}
             />
           </Route>
           <Route path="/register">
@@ -46,10 +46,14 @@ function App() {
             <Home />
           </Route>
           <Route path="/profile">
-            <CardProfile />
+            <CardProfile 
+            showError={updateErrorMessage}
+            userEmail={userEmail} />
           </Route>
           <Route path="/menu">
-            <Menu updateTitle={updateTitle} />
+            <Menu 
+            updateTitle={updateTitle}
+            showError={updateErrorMessage} />
           </Route>
           <Route path="/analys">
             <Analysis />
@@ -57,13 +61,12 @@ function App() {
           <Route path="/newforest">
             <NewForest 
             showError={updateErrorMessage}
-            userEmail={userEmail}/>
+            userEmail={userEmail} />
           </Route>
           <Route path="/forestMap">
-            <ForestMap
+            <ForestMap 
             showError={updateErrorMessage}
-            userEmail={userEmail} 
-            />
+            userEmail={userEmail} />
           </Route>
         </Switch>
         <AlertComponent

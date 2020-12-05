@@ -3,7 +3,7 @@ import logoWhite from "../../images/logo.svg";
 import forest from '../../images/forest.png'; // with import
 import { withRouter } from "react-router-dom";
 function Analysis(props) {
-    const redirectToHome = () => {
+    const redirectToMenu = () => {
         props.history.push("/menu");
       };
     return(
@@ -18,7 +18,7 @@ function Analysis(props) {
                 <p>Latitude: 189.132423</p>
                 <p>Longitude: 50.122341</p>
             </div>
-            <button className="grey-btn" onClick={() => redirectToHome()}>
+            <button className="grey-btn" onClick={() => redirectToMenu()}>
             Tillbaka
           </button>
             </div>

@@ -3,6 +3,7 @@ import logo from "../../images/logo.svg";
 import { withRouter } from "react-router-dom";
 
 function Menu(props) {
+  
   const redirectToLogin = () => {
     props.updateTitle("Login");
     props.history.push("/login");
@@ -28,9 +29,6 @@ function Menu(props) {
     props.history.push("/forestmap");
   };
 
-
-  
-
   return (
     <div className="container">
       <div className="menu">
@@ -54,13 +52,13 @@ function Menu(props) {
               <ul className="middle">
                 <li className="no-underline" onClick={() => redirectToNewForest()}>
                   <i className="fa fa-tree" style={{ color: "red" }}></i>Lägg
-                  till en skog
+                  till min skog
                 </li>
                 <li
                   className="no-underline" onClick={() => redirectToForestMap()}
                 >
                   <i className="fa fa-tree" style={{ color: "green" }}></i>
-                  Skog 2
+                  Min skog
                 </li>
               </ul>
             </div>
@@ -68,6 +66,10 @@ function Menu(props) {
           <li className="no-underline" onClick={() => redirectToAnalys()}>
             <i style={{ marginLeft: "-22px" }} className="fa fa-area-chart"></i>
             Analys
+          </li>
+          <li className="no-underline" style={{cursor: "default"}}>
+            <i style={{ marginLeft: "-22px" }} className="fa fa-question-circle"></i>
+            Söka hjälp
           </li>
         </ul>
         <div className="bottom">
@@ -79,6 +81,7 @@ function Menu(props) {
     </div>
   );
 }
+
 setTimeout(function () {
   const coll = document.getElementsByClassName("collapsible");
 
@@ -93,6 +96,6 @@ setTimeout(function () {
       }
     });
   }
-}, 3000);
+}, 2000);
 
 export default withRouter(Menu);
