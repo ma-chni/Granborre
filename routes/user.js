@@ -125,13 +125,13 @@ router.post(
       });
       if (!user)
         return res.status(400).json({
-          message: "error",
+          message: "Fel",
         });
 
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch)
         return res.status(400).json({
-          message: "error",
+          message: "Fel",
         });
 
       const payload = {
@@ -156,7 +156,7 @@ router.post(
     } catch (e) {
       console.error(e);
       res.status(500).json({
-        message: "Server Error",
+        message: "Server fel",
       });
     }
   }
@@ -170,7 +170,7 @@ router.get(
       let user = await User.findOne({ email: email });
       if (!user) {
         return res.status(400).json({
-          response: "Failed to find the user",
+          response: "Användare hittades inte",
         });
       } else {
         return res.status(200).json({
@@ -178,7 +178,7 @@ router.get(
         });
       }
     } catch (e) {
-      res.send({ message: "Error in Fetching user" });
+      res.send({ message: "Fel när användare skulle hämtas" });
     }
   }
 );
@@ -193,7 +193,7 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({
         errors: errors.array(),
-        message: "Failed to save coordinates",
+        message: "Kunde inte spara koordinater",
       });
     }
 
@@ -206,7 +206,7 @@ router.post(
       );
       if (!user) {
         return res.status(400).json({
-          message: "failed",
+          message: "Fel",
         });
       } else if (user) {
         const lng = coordinates.lng.toString().substring(0, 10);
@@ -219,7 +219,7 @@ router.post(
     } catch (e) {
       console.error(e);
       res.status(500).json({
-        message: "Server Error",
+        message: "Server fel",
       });
     }
   }
@@ -235,7 +235,7 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({
         errors: errors.array(),
-        message: "Failed to save preferences",
+        message: "Misslyckades att spara prefenser",
       });
     }
 
@@ -247,7 +247,7 @@ router.post(
       );
       if (!user) {
         return res.status(400).json({
-          message: "failed",
+          message: "Fel",
         });
       } else if (user) {
         return res.status(200).json({
@@ -257,7 +257,7 @@ router.post(
     } catch (e) {
       console.error(e);
       res.status(500).json({
-        message: "Server Error",
+        message: "Server fel",
       });
     }
   }
@@ -270,7 +270,7 @@ router.get("/getuser", async (req, res) => {
     let user = await User.findOne({ email: email });
     if (!user) {
       return res.status(400).json({
-        response: "Failed to find the user",
+        response: "Användare hittades inte",
       });
     } else {
       return res.status(200).json({
@@ -278,7 +278,7 @@ router.get("/getuser", async (req, res) => {
       });
     }
   } catch (e) {
-    return res.status(700).json({ message: "Error in fetching user" });
+    return res.status(700).json({ message: "Fel när användare skulle hämtas" });
   }
 });
 
