@@ -30,19 +30,22 @@ function NewForest(props) {
       email: props.userEmail,
       coordinates: position,
     };
-    
+
     axios
       .post(API_BASE_URL + "/user/saveforest", payload)
       .then(function (response) {
         if (response.status === 200) {
           props.showError(null);
+          redirectToMenu();
         } else {
           props.showError("Skogen sparades inte");
         }
       })
       .catch(function (error) {
         if (error.response) {
-          props.showError("Skogen sparades inte. Returnera till login sidan och försök igen.");
+          props.showError(
+            "Skogen sparades inte. Returnera till login sidan och försök igen."
+          );
         }
       });
   };
