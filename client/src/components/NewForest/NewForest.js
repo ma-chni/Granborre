@@ -37,12 +37,12 @@ function NewForest(props) {
         if (response.status === 200) {
           props.showError(null);
         } else {
-          props.showError("Forest not saved");
+          props.showError("Skogen sparades inte");
         }
       })
       .catch(function (error) {
         if (error.response) {
-          props.showError("Forest not saved. Please return to login page and try again");
+          props.showError("Skogen sparades inte. Returnera till login sidan och försök igen.");
         }
       });
   };

@@ -32,19 +32,19 @@ function LoginForm(props) {
         if (response.status === 200) {
           setState((prevState) => ({
             ...prevState,
-            successMessage: "Login successful. Redirecting to home page..",
+            successMessage: "Login lyckades. Omredigeras tll startsida..",
           }));
           redirectToMenu();
           props.showError(null);
         } else if (response.status === 204) {
-          props.showError("Invalid email/password");
+          props.showError("Ogiltig email/lösenord");
         } else {
-          props.showError("Invalid email/password");
+          props.showError("Ogiltig email/lösenord");
         }
       })
       .catch(function (error) {
         if (error.response.data.message === "error") {
-            props.showError("Invalid email/password. Please try again");
+            props.showError("Ogiltig email/lösenord. försök");
         }
       });
   };

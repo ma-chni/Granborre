@@ -79,7 +79,7 @@ function Menu(props) {
               style={{ marginLeft: "10px" }}
               className="fa fa-question-circle"
             ></i>
-            Söka hjälp
+            Sök hjälp
           </li>
         </ul>
         <div className="bottom">
