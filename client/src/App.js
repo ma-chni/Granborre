@@ -11,12 +11,13 @@ import Menu from "./components/Menu/Menu";
 import Analysis from "./components/Analysis/Analysis";
 import NewForest from "./components/NewForest/NewForest";
 import ForestMap from "./components/ForestMap/ForestMap";
+import Help from "./components/Help/Help";
 
 function App() {
   const [title, updateTitle] = useState(null);
   const [userEmail, updateUserEmail] = useState(null);
   const [errorMessage, updateErrorMessage] = useState(null);
-  
+
   return (
     <Router>
       <div className="App">
@@ -46,27 +47,22 @@ function App() {
             <Home />
           </Route>
           <Route path="/profile">
-            <CardProfile 
-            showError={updateErrorMessage}
-            userEmail={userEmail} />
+            <CardProfile showError={updateErrorMessage} userEmail={userEmail} />
           </Route>
           <Route path="/menu">
-            <Menu 
-            updateTitle={updateTitle}
-            showError={updateErrorMessage} />
+            <Menu updateTitle={updateTitle} showError={updateErrorMessage} />
           </Route>
           <Route path="/analys">
             <Analysis />
           </Route>
+          <Route path="/help">
+            <Help />
+          </Route>
           <Route path="/newforest">
-            <NewForest 
-            showError={updateErrorMessage}
-            userEmail={userEmail} />
+            <NewForest showError={updateErrorMessage} userEmail={userEmail} />
           </Route>
           <Route path="/forestMap">
-            <ForestMap 
-            showError={updateErrorMessage}
-            userEmail={userEmail} />
+            <ForestMap showError={updateErrorMessage} userEmail={userEmail} />
           </Route>
         </Switch>
         <AlertComponent

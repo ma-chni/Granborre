@@ -209,6 +209,9 @@ router.post(
           message: "failed",
         });
       } else if (user) {
+        const lng = coordinates.lng.toString().substring(0, 10);
+        const lat = coordinates.lat.toString().substring(0, 10);
+        sendForestSMS(user.phone, lng, lat);
         return res.status(200).json({
           message: "OK",
         });
@@ -292,13 +295,57 @@ function sendSMS(number) {
     },
   };
 
-  const formattedNumber = "+46" + number.substring(1);
+  let formattedNumber;
+
+  if (number.charAt(0) === "0") {
+    formattedNumber = "+46" + number.substring(1);
+  } else {
+    formattedNumber = number;
+  }
 
   const postFields = {
     from: "Granborre",
     to: formattedNumber,
     message:
       "Tack så mycket för att ni registrerat er hos Granborre. När ni har lagt till och sparat er skog så kommer vi övervaka den och meddela er vid ett potentiellt granbarkborreangrepp!",
+  };
+  const postData = querystring.stringify(postFields);
+  const request = https.request(options);
+
+  request.write(postData);
+  request.end();
+}
+
+function sendForestSMS(number, lng, lat) {
+  const username = "u0ade4dce8345535c6f6f310a353a342f";
+  const password = "26E2DA80D8BFBC928970F4329CD186CA";
+  const key = Buffer.from(username + ":" + password).toString("base64");
+  const options = {
+    hostname: "api.46elks.com",
+    path: "/a1/SMS",
+    method: "POST",
+    headers: {
+      Authorization: "Basic " + key,
+    },
+  };
+
+  let formattedNumber;
+
+  if (number.charAt(0) === "0") {
+    formattedNumber = "+46" + number.substring(1);
+  } else {
+    formattedNumber = number;
+  }
+
+  const postFields = {
+    from: "Granborre",
+    to: formattedNumber,
+    message:
+      "Tack för att ni har lagt till och sparat er skog. Dina koordinater är " +
+      lng +
+      " , " +
+      lat +
+      " vilket vi nu kommer övervaka.",
   };
   const postData = querystring.stringify(postFields);
   const request = https.request(options);

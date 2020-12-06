@@ -28,6 +28,11 @@ function Menu(props) {
     props.history.push("/forestmap");
   };
 
+  const redirectToHelp = () => {
+    props.updateTitle("Help");
+    props.history.push("/help");
+  };
+
   const handleClick = (e) => {
     const { target } = e;
     target.classList.toggle("active");
@@ -49,8 +54,10 @@ function Menu(props) {
             <i className="fa fa-user"></i>Min Profil
           </li>
           <li className="collapsible" style={{ marginLeft: "20px" }}>
-              <i className="fa fa-tree"></i>
-              <p onClick={handleClick} className="my-forest-para">Mina Skogar</p>
+            <i className="fa fa-tree"></i>
+            <p onClick={handleClick} className="my-forest-para">
+              Mina Skogar
+            </p>
             <div className="content">
               <ul className="smaller-list">
                 <li
@@ -74,7 +81,11 @@ function Menu(props) {
             <i style={{ marginLeft: "-22px" }} className="fa fa-area-chart"></i>
             Analys
           </li>
-          <li className="no-underline" style={{ cursor: "default" }}>
+          <li
+            className="no-underline"
+            style={{ cursor: "default" }}
+            onClick={() => redirectToHelp()}
+          >
             <i
               style={{ marginLeft: "10px" }}
               className="fa fa-question-circle"
